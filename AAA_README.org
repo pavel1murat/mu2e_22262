@@ -1,0 +1,11 @@
+mu2e_22262:
+
+Abstract:
+
+This note summarizes the effort on understanding the kMax fits of the RMC spectra.
+Mistakes and internal inconsistencies found in the published results make it difficult
+to rely on those when predicting RMC background to the search of mu- -->e+ conversion
+process.
+
+The executive summary is that in order to reliably predict RMC background to mu- --> e+,
+Mu2e needs to measure the endpoint of the RMC photon spectrum on Al.
