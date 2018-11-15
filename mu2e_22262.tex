@@ -1,0 +1,244 @@
+% -*- mode:flyspell; mode:latex -*-
+% \documentclass[a4paper,twoside,11pt]{book}
+\documentclass[12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{hyperref}
+% \usepackage{subfigure}
+\usepackage{color}
+\usepackage[all]{hypcap}
+% \usepackage[normalem]{ulem}  % for striking out
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+% \fancyhead[C]{}
+% \fancyhead[L] {\it{Mu2e-doc-4555-v1.0} }
+
+\usepackage[square,sort,comma,numbers]{natbib}
+
+% \usepackage[backend=biber, style=numeric-comp, sorting=ynt] {biblatex}
+
+% \addbibresource{mu2e_internal_notes.bib}
+% \addbibresource{radiative_muon_capture.bib}
+% \addbibresource{radiative_pion_capture.bib}
+
+\newcommand {\red}          {\color{red}}
+\newcommand {\blue}         {\color{blue}}
+\newcommand {\mubunch}      {$\mu$Bunch}
+\newcommand {\ra}           {\mbox{$\rightarrow$}}
+\newcommand {\MuMinusEPlus} {\mbox{$\mu^- \rightarrow e^+$}}
+
+
+\newcommand*{\plogo}{\includegraphics[scale=6]{\mchiappiFigures/mu2e_logo_oval}}
+
+%\newcommand*{\plogo}{\includegraphics[scale=6]{mu2e_logo_oval}}
+
+\begin{document}
+
+\begin{titlepage}
+  \begin{flushright}
+    \bf {MU2E/PHYSICS/22262} \\
+    version 0.0
+    \today
+  \end{flushright}
+
+  \vspace{1cm}
+  
+  \begin{center}
+    {\Large \bf Understanding the kMax fits of the RMC spectra} 
+    
+    \vspace{1cm}
+    
+    E.Diociaiuti (Roma), M.Mackenzie (Northwestern), P.Murat(FNAL)
+    
+    % \footnote{\texttt{Fermilab; e-mail: murat@fnal.gov}}
+    \vspace{0.3cm}
+    
+    \vspace{0.8cm}                           
+  \end{center}
+
+  \begin{abstract}
+    
+    This note summarizes our effort on understanding the kMax fits of the RMC spectra.
+
+    Mistakes and other internal inconsistencies found in the literature make
+    it difficult to rely on the results of other experiments when predicting RMC
+    background to the search of mu- -->e+ conversion process.
+    
+    To reliably predict RMC background to mu- --> e+, Mu2e needs to have its own
+    measurement of the endpoint of the RMC photon spectrum on Al.
+    
+  \end{abstract}
+
+\end{titlepage}
+% \frontmatter
+% \chapter*{Abstract}
+%
+% \addcontentsline{toc}{chapter}{Abstract}
+%
+% \mainmatter
+%
+{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter{Calibration}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{ RMC as a background to a --> b }
+% 
+% \begin{figure}[H]
+%   \includegraphics[width=1.05\textwidth]{figures/png/beam_flash_electron_momentum} 
+% 
+%   \caption{
+%    momentum spectrum of the beam flash electrons
+%   }
+% \end{figure}
+
+Radiative muon capture physics is one of the most important backgrounds to the search
+of \MuMinusEPlus\ conversion. Given the proximity between the expected signal energy,
+92.32 MeV, and the published endpoint of the RMC spectrum on aluminum, $90 \pm 2$ MeV
+\cite{RMC_1999_PhysRevC.59.2853}, variation of the RMC spectrum endpoint within the
+published errors could result in significant changes in the expected RMC background.
+
+References \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853} provide
+sufficient information for the readers to reproduce the published fits of the
+RMC spectra.
+
+Discuss the closure approximation
+
+We use published parameterizations of the TRIUMF RMC spectrometer response
+to fit the experimental data and determine kMax values for different nuclei
+as well as the corresponding fit uncertainties.
+
+We compare our fit results to the published ones.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section { Parameterization of the Detector Response}
+
+
+Published are the measured data. To compare them to the model predictions,
+one needs to know how the theoretical spectrum is modified by the detector
+response, i.e. know the detector response.
+
+Fortunately, references  \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853}
+have the detector response published.
+
+Also published is the RPC spectrum on $H_2$ used for calibration.
+
+We check how well different parameterizations of the detector response describe the
+calibration peak.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section { Input Data for fits}
+
+Input data used are the digitized figures from references
+\cite{RMC_1992_PhysRevC.46.1094,RMC_1999_PhysRevC.59.2853}.
+
+Checks of the digitization accuracy
+
+Errors - statistical. Systematic uncertainty on the energy scale in the
+published data - less than 0.5 MeV.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section { Fits }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection { Fits of the 1992 data }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection { Fits of the 1995 data }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection { Fits of the 1998 data }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection { Fits of the 1999 data }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section { Discussion }
+
+
+1. Our fits result in significantly smaller errors on kMax.
+
+2. '1999 parameterization of the detector response gives significantly better
+    description of all datasets published by the TRIUMF RMC spectrometer
+    ('1992, '1995, '1998, and '1999)
+
+    3. Fit chi2's using '1992 response are large enough to suggest wrong response.
+
+    4. '1992 response is conssitent with the RPC peak, while '1999 response - is not
+
+    5. different kMax fits for the same target vary on a scale large compared to the
+    fit errors
+
+    6. how our fit results are different from the published? 
+
+
+% \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{ Summary }
+
+
+The only thing we can claim for certain is that the fit uncertainties on kMax are
+of the order of 0.5 MeV, not 2 MeV. Published uncertainties of about 2-3 MeV
+have been derived using wrong procedure (fit of the distribution of chi2/dof
+instead of the total chi2)
+
+
+For Al, the fit results are consistent with the published - about 90 MeV.
+
+
+Plan : use aluminum data
+
+a)Assume $90 \pm 0.5$ MeV, determine the RMC background
+
+b) assume kMax + 3 sigma, determine the RMC background
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{ Acknowledgements }
+
+We want to thank ...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     %% 
+     %% % \addcontentsline{toc}{chapter}{Bibliography}
+     %
+\bibliographystyle{plain}
+\bibliography{radiative_muon_capture}
+
+% \printbibliography
+\end{document}
+
+
+% ------------------------------------------------------------------------------
+% templates
+% ------------------------------------------------------------------------------
+% Table ~\ref{table:summary} gives summary the numbers used in this study.
+% 
+% \hspace{-0.1in}
+% \begin{table}[htbp]
+%   \label{table:summary}
+%   \begin{center} 
+%     {\renewcommand{\arraystretch}{1.0}   % change 1.0 to 1.1 to increase the spacing between the table lines
+%       \begin{tabular}{|c|c|c|c|}
+%         \hline
+%                             & default TS geometry & misaligned TS geometry   &  Ratio(default/misaligned)    \\ 
+%         \hline
+%         $N_{POT}$            &  $4.96 \cdot 10^6$  &    $5.00 \cdot 10^6$      &   0.992   \\ 
+%         $N_{\mu}^{TS3u}$      &  65648              &     61354                 &   1.070   \\ 
+%         $N_{\mu}^{TS5}$       &  28517              &     27351                 &   1.043   \\ 
+%         $N_{\mu}^{ST}$        &  8868               &      8396                 &   1.056   \\ 
+%         $N_{\mu}^{ST}/N_{POT}$ &  $1.79 \pm 0.02$    &    $1.68 \pm 0.02$        &   $1.065 \pm 0.03$        \\ 
+%         \hline
+%       \end{tabular}
+%     }
+%   \end{center}
+%   \caption{
+%     Muons rates at different points of the Mu2e beamline and stopping muon rates for nominal and 
+%     misaligned TS geometries
+%   }
+%   % \vspace{0.5in}
+% \end{table}
