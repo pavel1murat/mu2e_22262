@@ -117,65 +117,10 @@ as well as the corresponding fit uncertainties.
 We compare our fit results to the published ones.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section { Parameterization of the Detector Response}
-
-
-Published are the measured data. To compare them to the model predictions,
-one needs to know how the theoretical spectrum is modified by the detector
-response, i.e. know the detector response.
-
-Fortunately, references  \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853}
-have the detector response published.
-
-Also published is the RPC spectrum on $H_2$ used for calibration.
-
-We check how well different parameterizations of the detector response describe the
-calibration peak.
-\begin{figure}[htbp]
- \begin{center}
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1992_Response} 
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1998_Response} 
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1992_Response} 
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1998_Response} 
- \end{center}
- \caption{\red{ \bf Caption}}
- \label{p004}
- \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section { Input Data for fits}
-
-Input data used are the digitized figures from references
-\cite{RMC_1992_PhysRevC.46.1094,RMC_1999_PhysRevC.59.2853}.
-
-\begin{figure}[htbp]
- \begin{center}
- \includegraphics[width=0.7\columnwidth]{png/missing_plot} 
- \end{center}
- \caption{\red{ \bf Caption}}
- \label{p004}
- \end{figure}
-Checks of the digitization accuracy
-
-Errors - statistical. Systematic uncertainty on the energy scale in the
-published data - less than 0.5 MeV.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section { Fits }
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection { Fits of the 1992 data }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection { Fits of the 1995 data }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection { Fits of the 1998 data }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection { Fits of the 1999 data }
-
+\input{detector_response}
+\input{input_data}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\input{fits}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section { Discussion }
 
