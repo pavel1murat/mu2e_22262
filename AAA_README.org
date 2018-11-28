@@ -1,11 +1,25 @@
 mu2e_22262:
 
-Abstract:
+* Abstract:
 
-This note summarizes the effort on understanding the kMax fits of the RMC spectra.
-Mistakes and internal inconsistencies found in the published results make it difficult
-to rely on those when predicting RMC background to the search of mu- -->e+ conversion
-process.
+  This note summarizes the effort on understanding the kMax fits of the RMC spectra.
+  Mistakes and internal inconsistencies found in the published results make it difficult
+  to rely on those when predicting RMC background to the search of mu- -->e+ conversion
+  process.
 
-The executive summary is that in order to reliably predict RMC background to mu- --> e+,
-Mu2e needs to measure the endpoint of the RMC photon spectrum on Al.
+  The executive summary is that in order to reliably predict RMC background to mu- --> e+,
+  Mu2e needs to measure the endpoint of the RMC photon spectrum on Al.
+
+* building Pasha's 'rmc_fit' package and running code from it:
+
+  1. clone rmc_fit to a release area which has STNTUPLE checked out:
+
+     git clone https://github.com/pavel1murat/rmc_fit.git
+
+  2. follow instructions in rmc_fit/AAA_README.org
+
+
+
+
+
+

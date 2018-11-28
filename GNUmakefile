@@ -25,6 +25,6 @@ mu2e_22262: mu2e_22262.tex input_data.tex fits.tex detector_response.tex
 	bibtex tmp/mu2e_22262 ; \
 	pdflatex -output-directory=tmp mu2e_22262.tex input_data.tex fits.tex detector_response.tex
 
-all: pdf 
+all: pdf mu2e_22262
 	echo $(pdfs)
 	echo $?
