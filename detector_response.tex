@@ -5,14 +5,191 @@ Published are the measured data. To compare them to the model predictions,
 one needs to know how the theoretical spectrum is modified by the detector
 response, i.e. know the detector response.
 
-Fortunately, references  \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853}
-have the detector response published.
+The detector response D(E,E') describes the probability of detect a photon
+ of true energy E with a reconstructed energy E'.
 
-Also published is the RPC spectrum on $H_2$ used for calibration.
+In the following the two detector responses published respectively in 
+ \cite{RMC_1992_PhysRevC.46.1094} and \cite{RMC_1998_PhysRevC.58.1767}
+ are in detail described.
+ Both are determined using the GEANT Monte Carlo simulation using monoenergetic photons
+ in a energy range of 50-140 MeV and fitted to a analytic parametrization.
+
+\subsection { 1992 Detector response parametrization}
+The parametrization represent a Gaussian distribution with exponential low- and
+ high-energy tails. In order to reproduce the low-energy tails for high-energy photons a second Gaussian is added to the fuction for photon energy E>60 MeV.
+The fuction form is:
+\begin{equation}
+
+\text{D(E,E')}= \left\{
+\begin{array}{ll}
+                \text{A exp}\left[-\frac{1}{2\sigma_0^2}(E'-E_o)\right]+
+                \text{F exp}\left[-\frac{1}{2\sigma_3^2}(E'-E_3)^2\right]
+ \quad E_1<E'<E_2 \\
+                \text{B exp}\left[-\frac{1}{\sigma_1}(E_1-E') \right]+
+                \text{F exp}\left[-\frac{1}{2\sigma_3^2}(E'-E_3)^2\right]
+ \quad E'<E_1      \\  
+                \text{C exp}\left[-\frac{1}{\sigma_2}(E'-E_2)\right]+
+                \text{F exp}\left[-\frac{1}{2\sigma_3^2}(E'-E_3)^2\right]
+ \quad E'>E2     
+ \end{array}
+ \right
+
+\end{equation}
+ 
+where $E_1=E_0 - \frac{\sigma_0^2}{\sigma_1}$, $E_2 =E_0 + \frac{\sigma_0^2}{\sigma_2}$,
+ $B=\text{A exp}\left[-\frac{\sigma_0^2}{2\sigma_1^2}\right]$, 
+ $C=\text{A exp}\left[\frac{\sigma_0^2}{2\sigma_2^2}\right]$. 
+
+The other parameters have a polynomial dependence to the photon energy like:
+\begin{equation}
+f(E)= P_0+P_1E+P_2E^2+P_3E^3
+\end{equation} 
+the coefficients are reported in table~\ref{tab:coefficients1} and ~\ref{tab:coefficients2} .
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{| c | c | c | c | c | }
+\hline
+Parameter & $P_0$ (MeV)& $P_1$ & $P_2$ (MeV)$^{-1}$ \\ \hline
+$\sigma_0$ & -0.5836 & 0.0352 & \\ \hline
+$\sigma_1$ & -5.879 & 0.1653 & -5.149$\times 10^{-4}$ \\ \hline
+$\sigma_2$ & 1.596 & -0.03859 & 3.883$\times 10^{-4}$ \\ \hline
+$\sigma_3$ & -47.80 & 1.010 & -4.406$\times 10^{-3}$ \\ \hline
+E$_3$ & 1.068 & 0.7507 & \\ \hline
+E$_0$ (E>60) & -1.161 & 0.9481 & 1.724$\times 10^{-3}$ \\ \hline
+E$_0$ (E<60) & 22.73 & 0.1995 & 5.993$\times 10^{-3}$ \\ \hline
+
+\end{tabular}
+\end{center}
+\caption{Coeffiecients of the polynomial energy dependece of the response fuction parameters\label{tab:coefficients1}}
+\end{table}
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{| c | c | c | c | c | c |}
+\hline
+Parameter & $P_0$ & $P_1$ (MeV)$^{-1}$ & $P_2$ (MeV)$^{-2}$  & $P_3$ (MeV)$^{-3}$\\ \hline
+A & 3.259$\times 10^{-4}$ & -4.120$\times 10^{-4}$ & 1.015$\times 10^{-5}$ & -4.05$\times 10^{-8}$  \\ \hline
+F/A & -0.1337 & 2.828$\times 10^{-3}$ & -9.701$\times 10^{-6}$ & \\ \hline
+\end{tabular}
+\end{center}
+\caption{Coeffiecients of the polynomial energy dependece of the photon acceptance parameters\label{tab:coefficients2}}
+\end{table}
+
+In Fig.~\ref{fig:parameterDependance} the photon energy dependence of the parameters of the detector response fuction are plotted.
+\begin{figure}[!h]
+ \begin{center}
+ \includegraphics[width=0.33\columnwidth]{png/sigmas92.png} 
+ \includegraphics[width=0.33\columnwidth]{png/A_FoverA92.png} 
+ \includegraphics[width=0.33\columnwidth]{png/E092.png} 
+ \end{center}
+ \caption{Energy dependence of the different parameter defining the detector response}
+ \label{fig:parameterDependance}
+ \end{figure}
+
+
+Some examples of the detector response at different energies, namely 50 MeV , 70 MeV , 90 MeV, and 110 MeV,
+ are reported in Fig.~\ref{fig:92ResponseExample}.\\
+As previously described, for photon energies E>60 MeV, the low-energy tails are well evident.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width =\textwidth]{png/Resp_example92.png}
+\caption{1992 detector response parametrization for different photon energies}
+\label{fig:92ResponseExample}
+\end{figure}
+
+
+In Fig.~\ref{fig:EpeakvsE92} the peak of the distribution of the reconstructed energy is reported as a fuction of the photon energy, a linear dependence is clearly visible.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width =\textwidth]{png/EpeakvsE92.png}
+\caption{peak of the energy distribution obtained from the1992 detector response as a fuction of the photon energies.}
+\label{fig:EpeakvsE92}
+\end{figure}
+
+\subsection { 1998 Detector Response }
+
+Because of differences in the triggers used in this later work the detector response results slightly different.
+The fuction used to describe the detector response through  a Gaussian peak with logaritmic low-energy  and an exponetial high-energy tail:
+
+\begin{equation}
+D(E,E')= \left\{
+\begin{array}[ll]
+ \gamma ln(x)/x             \qquad E'\leq (E_0-\sigma_0) \\
+ Ae^{-(E'-E_0)^2/2\sigma_0^2 }    \qquad E0-\sigma_0<E'<(E_0-\sigma_0^2/\sigma^2)\\
+ Ae^{-(E'-E_0)/2\sigma_2}        \qquad E'\geq (E_0+\sigma_0^2/\sigma_2)
+\right
+\end{array}
+
+\end{equation}
+
+The quantity $\beta$  allows the matching of the low-side and core of the distribution at E'=$E_0-\sigma_0$.
+
+The quantity $x$ is defined as 
+$$x= \frac{\alpha- E}{\alpha -37 \text{ MeV}}$$.
+Also in this case the parameters $\alpha,A,E_0,\sigma_0,\sigma_2$ have a polynomial dependence on the photon energy that can be parametrized as:
+
+\begin{equation}
+\alpha= a+0+a_1y+a_2y^2+a_3y^3
+\end{equation}
+
+where $y= (E-60 \text{MeV}/60 \text{ MeV})$/
+
+
+The  coefficient of the parameters are reported in Tab.~\ref{tab:param98}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{| c | c | c | c | c | c | }
+\hline
+Parameter & $a_0$ & $a_1$ & $a_2$ & $a_3$ \\ \hline
+$\alpha$ & 56.1 &62.5 & -0.826 & 0.0  \\ \hline
+A & 9.41$\times 10^{-4}$ & 2.61$\times 10^{-3}$ &0.27 $\times 10^{-2}$ &0.835$\times 10^{-3}$   \\ \hline
+$E_0$ & 54.4 & 57.7 & -0.315 &0.0 \\ \hline
+$\sigma_0$ & 2.03 &10.4 &1.25 & -0.428\\ \hline
+$\sigma_2$ & 0.786 & 0.508 & 0.425 & -0.164\\ \hline
+
+\end{tabular}
+\end{center}
+\caption{Coeffiecients of the polynomial energy dependece of the response fuction parameters\label{tab:param98}}
+\end{table}
+
+In Figure~\ref{fig:parameters98} the different parameters of the response fuction are plotted as a function of the photon energy.
+
+
+\begin{figure}[!h]
+ \begin{center}
+ \includegraphics[width=0.49\columnwidth]{png/sigmas98.png} 
+ \includegraphics[width=0.49\columnwidth]{png/par98.png} 
+ \end{center}
+ \caption{Energy dependence of the different parameter defining the detector response}
+ \label{fig:parameters98}
+ \end{figure}
+
+In  Figure~\ref{fig:response98} the detector response is plotted for different photon energies, a difference in the shape of the distribution is clearly evident.
+
+begin{figure}[!h]
+\centering
+\includegraphics[width =\textwidth]{png/Resp_example98.png}
+\caption{1998 detector response parametrization for different photon energies}
+\label{fig:response98}
+\end{figure}
+
+
+
+%References  \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853}
+%have the detector response published.
+
+
+
+
+
+Also published is the RPC spectrum on $H_2$ used for calibration see~\ref{p004}.
 
 We check how well different parameterizations of the detector response describe the
 calibration peak.
-\begin{figure}[htbp]
+
+\begin{figure}[!h]
  \begin{center}
  \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1992_Response} 
  \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1998_Response} 
