@@ -1,6 +1,12 @@
-mu2e_22262:
+#
+                              *mu2e_22262*:
 
-* Abstract:
+* bibliography configuration: <TAB> to expand 
+
+  git clone ssh://mu2egpvm02.fnal.gov:/grid/fermiapp/mu2e/git/mu2e_bibliography.git
+  export BIBINPUTS=${BIBINPUTS}:$PWD/mu2e_bibliography
+
+* Abstract: <TAB> to expand 
 
   This note summarizes the effort on understanding the kMax fits of the RMC spectra.
   Mistakes and internal inconsistencies found in the published results make it difficult
@@ -10,7 +16,7 @@ mu2e_22262:
   The executive summary is that in order to reliably predict RMC background to mu- --> e+,
   Mu2e needs to measure the endpoint of the RMC photon spectrum on Al.
 
-* building Pasha's 'rmc_fit' package and running code from it:
+* building Pasha's 'rmc_fit' package and running code from it: <TAB> to expand 
 
   1. clone rmc_fit to a release area which has STNTUPLE checked out:
 
