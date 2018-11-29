@@ -1,11 +1,58 @@
-mu2e_22262:
+#
+                              *mu2e_22262*:
 
-Abstract:
+* bibliography configuration: <TAB> to expand 
 
-This note summarizes the effort on understanding the kMax fits of the RMC spectra.
-Mistakes and internal inconsistencies found in the published results make it difficult
-to rely on those when predicting RMC background to the search of mu- -->e+ conversion
-process.
+  git clone ssh://mu2egpvm02.fnal.gov:/grid/fermiapp/mu2e/git/mu2e_bibliography.git
+  export BIBINPUTS=${BIBINPUTS}:$PWD/mu2e_bibliography
 
-The executive summary is that in order to reliably predict RMC background to mu- --> e+,
-Mu2e needs to measure the endpoint of the RMC photon spectrum on Al.
+* Abstract: <TAB> to expand 
+
+  This note summarizes the effort on understanding the kMax fits of the RMC spectra.
+  Mistakes and internal inconsistencies found in the published results make it difficult
+  to rely on those when predicting RMC background to the search of mu- -->e+ conversion
+  process.
+
+  The executive summary is that in order to reliably predict RMC background to mu- --> e+,
+  Mu2e needs to measure the endpoint of the RMC photon spectrum on Al.
+
+* building Pasha's 'rmc_fit' package and running code from it: <TAB> to expand 
+
+  1. clone rmc_fit to a release area which has STNTUPLE checked out:
+
+     git clone https://github.com/pavel1murat/rmc_fit.git
+
+  2. follow instructions in rmc_fit/AAA_README.org
+
+
+
+
+
+
+* building Michael's fitting package and running it: <TAB> to expand
+The old code location still is fine for the previous fit results,
+but new results are from a new version used to due a project for a
+statistics course
+code location /mu2e/app/users/mmackenz/mdc2018/MMAnalysis/rmc_fits/clean_build/
+files needed: RMCAlSpectrum.cc, RMCAlSpectrum.hh, smooth.cc, smooth.hh
+
+Running in ROOT:
+.L RMCAlSpectrum.cc++g //if already compiled .L RMCAlSpectrum_cc.so
+.L smooth.cc++g //if already compiled .L smooth_cc.so this is Pasha's interpolation TF1 function
+r = new RMCAlSpectrum()
+//Run a single fit
+//r->multiTest([n events], "[Response Year]", [Data Year], "[Target]")
+//e.g.
+r->multTest(1e6, "1998", 1992, "Al")
+//plot a response function
+//r->plotResponse([Photon Energy], "[Response Year]")
+r->plotResponse(90.,"1998")
+//plot a convoluted spectrum and a dataset
+//r->compareToData([kmax value], "[Response Year]", [n events], "[target]", [data year], [0/1 to draw +- 2 MeV as well])
+r->compareToData(90., "1998", 1e6, "Al", 1992, 1)
+//Plot of fit kmaxes
+//r->drawAllKMaxes("[chi/nll for Chi^2 or NLL fit]")
+r->drawAllKMaxes("chi")
+r->drawFitChiSq("") //draws chi^2 plot for all z with both fits with both responses
+
+
