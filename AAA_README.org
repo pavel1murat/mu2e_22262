@@ -56,3 +56,27 @@ r->drawAllKMaxes("chi")
 r->drawFitChiSq("") //draws chi^2 plot for all z with both fits with both responses
 
 
+
+
+* building Eleonora's 'rmc_fit' package and running code from it: <TAB> to expand...
+  The code I am using is /mu2e/app/users/ediociat/RMC_Study/RMC_1118.C
+  to run the code to find the best kmax you should do
+  root -l
+  .L RMC_1118.C++
+  doLoop(minKmax,nstep,stepsize,datayear,responsefunctionyear)
+
+  if you are interested in plotting a particulare response function you should type
+  root -l
+  .L RMC_1118.C++
+  plotResponse(energy)      to plot the '92 response function
+  plotResponse1998(energy)  to plot the '98 response function
+
+  to compare a particular kmax with the data type
+  root -l
+  .L RMC_1118.C++
+       TH1F *rmc_data= (TH1F*)get_data92_histogram()->Clone("rmc_data");
+   or  TH1F *rmc_data=    rmc_data=(TH1F*)get_data95_histogram()->Clone("rmc_data");
+   fu(kmax,rmc_data,1,ResponseFuctionyear)
+
+   !!!MY code is still quite slow sorry for it!!!
+   
