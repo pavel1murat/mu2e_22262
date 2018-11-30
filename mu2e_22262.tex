@@ -28,14 +28,11 @@
 
 \newcommand {\red}          {\color{red}}
 \newcommand {\blue}         {\color{blue}}
+
+\newcommand {\kmax}         {\mbox{$k_{\rm max}$}}
 \newcommand {\mubunch}      {$\mu$Bunch}
-\newcommand {\ra}           {\mbox{$\rightarrow$}}
 \newcommand {\MuMinusEPlus} {\mbox{$\mu^- \rightarrow e^+$}}
-
-
-\newcommand*{\plogo}{\includegraphics[scale=6]{\mchiappiFigures/mu2e_logo_oval}}
-
-%\newcommand*{\plogo}{\includegraphics[scale=6]{mu2e_logo_oval}}
+\newcommand {\ra}           {\mbox{$\rightarrow$}}
 
 \graphicspath{{figures/}}
 
@@ -51,7 +48,7 @@
   \vspace{1cm}
   
   \begin{center}
-    {\Large \bf Understanding the kMax fits of the RMC spectra} 
+    {\Large \bf Understanding the \kmax\ fits of the RMC spectra} 
     
     \vspace{1cm}
     
@@ -89,7 +86,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\chapter{Calibration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{ RMC as a background to a --> b }
+\section{ RMC as a background to \MuMinusEPlus\ conversion search }
 % 
 % \begin{figure}[H]
 %   \includegraphics[width=1.05\textwidth]{figures/png/beam_flash_electron_momentum} 
@@ -99,48 +96,78 @@
 %   }
 % \end{figure}
 
-Radiative muon capture physics is one of the most important backgrounds to the search
-of \MuMinusEPlus\ conversion. Given the proximity between the expected signal energy,
-92.32 MeV, and the published endpoint of the RMC spectrum on aluminum, $90 \pm 2$ MeV
-\cite{RMC_1999_PhysRevC.59.2853}, variation of the RMC spectrum endpoint within the
-published errors could result in significant changes in the expected RMC background.
+Radiative muon capture (RMC) is one of the most important backgrounds to the search for
+\MuMinusEPlus\ conversion on nuclei. In case of the Mu2e target of choice, aluminum,
+RMC is also the most uncertain one: the expected $e^+$ signal energy, E = 92.32 MeV,
+is close enough to the endpoint of the RMC spectrum on aluminum,
+$90 \pm 2$ MeV \cite{RMC_1999_PhysRevC.59.2853}, so variations of the endpoint
+energy within the experimental errors could result in significant changes
+in the RMC background expectations.
+%
+We note that the uncertainty in the RMC background expectations is mostly due to the
+published experimental uncertainty of 2 MeV - the Mu2e energy resolution of about 300-400 keV
+is small compared to a $\sim$ 3 MeV difference between the expected signal energy
+and the maximal energy of a positron coming from a conversion of a RMC photon.
+However, given the published 2 MeV uncertainty on the RMC spectrum endpoint the two 
+numbers are just about 1.5 standard deviation apart, so understanding of the
+experimental uncertainty on \kmax\ becomes quite important.
 
-References \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853} provide
-sufficient information for the readers to reproduce the published fits of the
-RMC spectra.
+Fortunately, measurements on the photon spectra on nuclei published 
+by the TRIUMF RMC spectrometer group in \cite{RMC_1992_PhysRevC.46.1094},
+\cite{RMC_1999_PhysRevC.59.2853} - provide sufficient information for readers
+to reproduce the published photon spectrum endpoints, and in this note
+we report on our attempt to do so.
 
-Discuss the closure approximation
+The endpoint of the RMC photon spectrum is determined using the closure
+approximation model \cite{RMC_1979_CERN_REF-TH-2967}.
+In this model, the photon spectrum is fully defined by a single parameter,
+the photon spectrum endpoint energy \kmax:
+$$
+   {dN \over dx} = {e^2 \over \pi} {\kmax^2 \over {m_\mu^2}}  (1-x) (1-2x+2x^2) x (1-x)^2
+$$
+, where $x = k/\kmax$.
 
-We use published parameterizations of the TRIUMF RMC spectrometer response
-to fit the experimental data and determine kMax values for different nuclei
-as well as the corresponding fit uncertainties.
-
-We compare our fit results to the published ones.
+We use parameterizations of the TRIUMF RMC spectrometer response
+to convolute them with the closure approximation spectra, fit the experimental data,
+determine the best \kmax\ values and the corresponding fit uncertainties
+for different nuclei, and compare the fit results to the published values.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{detector_response}
 \input{input_data}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\input{fits}
+% \input{fits}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section { Discussion }
 
-
-1. Our fits result in significantly smaller errors on kMax.
-
-2. '1999 parameterization of the detector response gives significantly better
-    description of all datasets published by the TRIUMF RMC spectrometer
-    ('1992, '1995, '1998, and '1999)
-
-    3. Fit chi2's using '1992 response are large enough to suggest wrong response.
-
-    4. '1992 response is conssitent with the RPC peak, while '1999 response - is not
-
-    5. different kMax fits for the same target vary on a scale large compared to the
-    fit errors
-
-    6. how our fit results are different from the published? 
-
+\begin{enumerate}
+\item
+  Our fits result in significantly smaller errors on kMax. It seems very likely
+  that the TRIUMF RMC spectrometer collaboration used wrong definition of the
+  fit errors. Plot on page 45 from reference \cite{BERGBISH_MS_THESIS} indicates
+  that the fit error has been defined as the change in the parameter value,
+  corresponding the the change in the fit $\chi^2/DOF$ by 1, rather than to the change
+  by one in the total fit $\chi^2$. The number of bins in the fit histograms
+  is about 35-40 is consistent with our fit errors being 5-6 times smaller than
+  the published ones.
+\item
+  '1999 parameterization of the detector response gives significantly better
+  fits of all spectra published by the TRIUMF RMC spectrometer 
+  ('1992, '1995, '1998, and '1999)
+\item
+  chi2's of the fits with '1992 response are large enough to suggest wrong
+  parameterization. Our chi2's per degree of freedom are consistent with
+  the published ones
+\item
+  However, the '1992 response is consistent with the RPC peak published
+  in 1992, while '1998 response - is not. This confirms internal consistency
+  of the '1992 publication 
+\item
+  different kMax fits for the same target vary on a scale large compared
+  to the fit errors
+\item
+  how our fit results are different from the published? 
+\end{enumerate}
 
 % \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

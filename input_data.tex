@@ -1,20 +1,69 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section { Input Data for fits}
+\section { Input data for the \kmax\ fits}
 
-Input data used are the digitized figures from references
-\cite{RMC_1992_PhysRevC.46.1094,RMC_1999_PhysRevC.59.2853}.
+The digitized figures from references \cite{RMC_1992_PhysRevC.46.1094,RMC_1999_PhysRevC.59.2853}
+are used as input data for fits. We assume that the published spectra plot numbers of events
+per bin, and the errors used in the fits are purely statistical.
+
+To check the first assumption we show in Figure \ref{fig:digitization_accuracy_x_y}(left) the accuracy
+of digitizing the energy bin centers. It is calculated as the difference between the digitized
+bin center and the expected bin center, N+0.5.
+
+Figure \ref{fig:digitization_accuracy_x_y}(right) shows the accuracy of digitizing the bin contents.
+The assumption is that that each bin contains an integer number of entries, plotted is the difference
+between the digitization and the closest integer. The digitization accuracy of the bin contents has
+standard deviation close to 0.1, with the mean also close to 0.1, which could result from
+mis-calibration of the Y axes digitization for the particular plot.
 
 \begin{figure}[htbp]
- \begin{center}
- \includegraphics[width=0.7\columnwidth]{png/missing_plot} 
- \end{center}
- \caption{\red{ \bf Caption}}
- \label{p004}
- \end{figure}
-Checks of the digitization accuracy
+  \begin{center}
+    \includegraphics[width=0.49\columnwidth]{png/digitization_accuracy_de} 
+    \includegraphics[width=0.49\columnwidth]{png/digitization_accuracy_Al_1992_dy} 
+  \end{center}
+  \caption{
+    left: accuracy of digitizing the histogram bin centers,
+    right: digitization accuracy of the bin content
+  }
+  \label{fig:digitization_accuracy_x_y}
+\end{figure}
 
-Errors - statistical. Systematic uncertainty on the energy scale in the
-published data - less than 0.5 MeV.
+The distribution in Figure \ref{fig:digitization_accuracy_error_bars} plots the residuals
+$\Delta_Y = 0.5((Y+\sigma_Y) + (Y-\sigma_Y)) - \sqrt{Y}$ for one of the digitized plots.
+It confirms the assumption that the error bars on the plots are purely statistical.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.99\columnwidth]{png/digitization_error_bars} 
+  \end{center}
+  \caption{
+    left: error bar residuals, $\Delta_Y$, vs the digitized error bars,
+    right: y-projection of the left histogram
+  }
+  \label{fig:digitization_accuracy_error_bars}
+\end{figure}
+
+
+\section { Systematic uncertainty on the energy scale}
+
+The energy scale of the TRIUMF RMC spectrometer has been calibrated using the
+radiative pion capture (RPC) on hydrogen \cite{RMC_1992_WRIGHT_1992_249}.
+Figure ~\ref{fig:1992_photon_spectrum_calibration} shows the measured RPC spectrum
+overlayed with the simulation results. The histogram bin
+is 500 keV, and one can see that the systematic uncertainty in the reconstructed
+photon energy does not exceed one bin, i.e. 0.5 MeV. Differences around 80 MeV are
+more likely to reflect systematic error in the acceptance calculation.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=0.7\columnwidth]{png/1992_TRIUMF_RMC_facility_fig_9_photon_spectrum_calibration} 
+  \end{center}
+  \caption{
+    RPC spectrum on hydrogen measured at the TRIUMF RMC spectrometer \cite{RMC_1992_WRIGHT_1992_249}.
+    In the region of RPC peak, the systematic uncertainty in the reconstructed photon energy does
+    not exceed one bin, i.e. 500 keV.
+  }
+  \label{fig:1992_photon_spectrum_calibration}
+\end{figure}
 
 %%% Local Variables:
 %%% mode: latex

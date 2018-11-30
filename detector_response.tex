@@ -19,7 +19,6 @@ The parametrization represent a Gaussian distribution with exponential low- and
  high-energy tails. In order to reproduce the low-energy tails for high-energy photons a second Gaussian is added to the fuction for photon energy E>60 MeV.
 The fuction form is:
 \begin{equation}
-
 \text{D(E,E')}= \left\{
 \begin{array}{ll}
                 \text{A exp}\left[-\frac{1}{2\sigma_0^2}(E'-E_o)\right]+
@@ -32,8 +31,7 @@ The fuction form is:
                 \text{F exp}\left[-\frac{1}{2\sigma_3^2}(E'-E_3)^2\right]
  \quad E'>E2     
  \end{array}
- \right
-
+ \right\}
 \end{equation}
  
 where $E_1=E_0 - \frac{\sigma_0^2}{\sigma_1}$, $E_2 =E_0 + \frac{\sigma_0^2}{\sigma_2}$,
@@ -114,14 +112,13 @@ Because of differences in the triggers used in this later work the detector resp
 The fuction used to describe the detector response through  a Gaussian peak with logaritmic low-energy  and an exponetial high-energy tail:
 
 \begin{equation}
-D(E,E')= \left\{
-\begin{array}[ll]
- \gamma ln(x)/x             \qquad E'\leq (E_0-\sigma_0) \\
- Ae^{-(E'-E_0)^2/2\sigma_0^2 }    \qquad E0-\sigma_0<E'<(E_0-\sigma_0^2/\sigma^2)\\
- Ae^{-(E'-E_0)/2\sigma_2}        \qquad E'\geq (E_0+\sigma_0^2/\sigma_2)
-\right
-\end{array}
-
+  D(E,E')= \left\{
+    \begin{array}{ll}
+      \gamma ln(x)/x          \qquad E' \leq (E_0-\sigma_0) \\
+      Ae^{-(E'-E_0)^2/2\sigma_0^2} \qquad E0-\sigma_0<E'<(E_0-\sigma_0^2/\sigma^2) \\
+      Ae^{-(E'-E_0)/2\sigma_2}    \qquad E' \geq (E_0+\sigma_0^2/\sigma_2)
+    \end{array}
+  \right\}
 \end{equation}
 
 The quantity $\beta$  allows the matching of the low-side and core of the distribution at E'=$E_0-\sigma_0$.
@@ -168,7 +165,7 @@ In Figure~\ref{fig:parameters98} the different parameters of the response fuctio
 
 In  Figure~\ref{fig:response98} the detector response is plotted for different photon energies, a difference in the shape of the distribution is clearly evident.
 
-begin{figure}[!h]
+\begin{figure}[!h]
 \centering
 \includegraphics[width =\textwidth]{png/Resp_example98.png}
 \caption{1998 detector response parametrization for different photon energies}
