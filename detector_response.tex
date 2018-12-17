@@ -97,15 +97,6 @@ As previously described, for photon energies E>60 MeV, the low-energy tails are 
 \end{figure}
 
 
-In Fig.~\ref{fig:EpeakvsE92} the peak of the distribution of the reconstructed energy is reported as a fuction of the photon energy, a linear dependence is clearly visible.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width =\textwidth]{png/EpeakvsE92.png}
-\caption{peak of the energy distribution obtained from the1992 detector response as a fuction of the photon energies.}
-\label{fig:EpeakvsE92}
-\end{figure}
-
 \subsection { 1998 Detector Response }
 
 Because of differences in the triggers used in this later work the detector response results slightly different.
@@ -163,7 +154,7 @@ In Figure~\ref{fig:parameters98} the different parameters of the response fuctio
  \label{fig:parameters98}
  \end{figure}
 
-In  Figure~\ref{fig:response98} the detector response is plotted for different photon energies, a difference in the shape of the distribution is clearly evident.
+In  Figure~\ref{fig:response98} the detector response is plotted for different photon energies, even if the distributions result two times wider with respect to the one of 1992 no explanation is given to justify this change.  %a difference in the shape of the distribution is clearly evident
 
 \begin{figure}[!h]
 \centering
@@ -172,27 +163,35 @@ In  Figure~\ref{fig:response98} the detector response is plotted for different p
 \label{fig:response98}
 \end{figure}
 
+In Figure~\ref{fig:shapecomp} the shape comparison of the two detector responses at 90 MeV (left) and the peaks of the detector responses as a function of the photon energies (right) are reported. The linearity of the two detector responses is similar.
 
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.49\columnwidth]{png/detRespinsieme.png}
+\includegraphics[width=0.49\columnwidth]{png/9298fit.png}
+\caption{Left: comparison of the shape of the detector response to a 90 MeV photon. Right:peak of the detector response as a fuction of the photon energies }
+\label{fig:shapecomp} 
+\end{figure}
 
-%References  \cite{RMC_1992_PhysRevC.46.1094}, \cite{RMC_1999_PhysRevC.59.2853}
-%have the detector response published.
-
-
-
-
-
-Also published is the RPC spectrum on $H_2$ used for calibration see~\ref{p004}.
-
-We check how well different parameterizations of the detector response describe the
-calibration peak.
+We check how well different parameterizations of the detector response describe the 
+calibration peak at 129.4 MeV obtained from $\pi^{-}p \rightarrow \gamma n$ on LH$_{2}$ reported in the 1992 
+A good agreement is shown in Figure~\ref{p004}(left) between data and  1992 response function, while the 1998 article has a completely different behaviour.\\
 
 \begin{figure}[!h]
  \begin{center}
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1992_Response} 
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1998_Response} 
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1992_Response} 
- \includegraphics[width=0.49\columnwidth]{png/70MeV_vs_1998_Response} 
+ \includegraphics[width=0.49\columnwidth]{png/RPC_Data_vs_1992_Response.png} 
+ \includegraphics[width=0.49\columnwidth]{png/RPC_Data_vs_1998_Response.png} 
  \end{center}
- \caption{\red{ \bf Caption}}
+ \caption{Response function of the 1992 article (left) and 1998 article (right) compared with the 129.4 MeV line from RPC on LH$_{2}$}
  \label{p004}
+ \end{figure}
+
+ In the 1998 article  however to validate  the detector response, the Radiative Pion Capture on $^{12}$Ca  is compared with the simulated data and a good agreement is reported as shown in Figure~\ref{fig:art9}.
+
+\begin{figure}[!h]
+ \begin{center}
+ \includegraphics[width=0.45\textwidth]{png/RPC12Ca.png} 
+ \end{center}
+ \caption{RPC spectrum from  $\pi^{-}p \rightarrow \gamma n$ on  $^{12}$Ca compared to the simulated data }
+ \label{fig:art9}
  \end{figure}
