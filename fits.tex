@@ -4,19 +4,64 @@
 %%% End:
 
 \section { Fits }
-The published data was fit using both of the published response functions.
-The method to fit the data was to minimize the $\chi^2$ value for many values
-of kMax, and then fit a parabola to the $\chi^2$ distribution, 
-$\chi^2_{Min} + \frac{(k-kMax)^2}{\sigma^2}$. The uncertainty on the fit kMax
-is then the inverse square root of the coefficient. This was also done using
-a negative log likelihood (NLL) minimization strategy, where the variance is half of
-the inverse of the leading coefficient. The latter is able to take into account empty
-bins in the data while the former cannot. The end point values for each target z 
-are shown in figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and NLL minimization
-respectively, and the $\chi^2$/DoF is shown in figure \ref{fig:ChiSqOfFits}. The NLL
-fitting method includes empty bins, which are ignored by the $\chi^2$ fitting method,
-and has a greater cost for deviating from bins with small entry numbers. This results
-in the NLL fit end point values being consistently higher, as is shown in figure \ref{fig:compareFits}.
+
+To fit the end point value, convolved spectrums were generated for end point energies
+between 80 MeV and 100 MeV using both detector response functions. The spectrums were scaled to minimize the $\chi^2$
+or the negative log likelihood (NLL), where the latter is able to take into account empty
+bins in the data while the former cannot. For the NLL, the convolved spectrum value was taken as the mean of
+a Poisson distribution. The scale factors to minimize the $\chi^2$ and NLL fits were derived by:
+
+$$f_{NLL}(N;x_i) = \frac{x_i^N e^{-x_i}}{N!}$$
+$$\chi^2 = \sum^N_{i=1} (\frac{A*x_i - y_i}{\sigma_i})^2; NLL = -\sum^N_{i=1}log(f_{NLL}(y_i;A*x_i))$$
+$$\frac{\partial NLL}{\partial A} = 0 \rightarrow A_{NLL} = \frac{\sum^N_{i=1} y_i}{\sum^N_{i=1} x_i} $$
+$$\frac{\partial \chi^2}{\partial A} = 0 \rightarrow A_{\chi^2} = \frac{\sum^N_{i=1} \frac{x_i*y_i}{\sigma_i^2}}{\sum^N_{i=1} \frac{x_i^2}{\sigma_i^2}} $$
+
+\noindent
+where $x_i$ is the predicted value corresponding to data $y_i$ for a given end point value.
+
+The distribution of $\chi^2$ and NLL values as a function of the end point energy were each fit to a parabola near 
+the minimum using ROOT to find the best fit end point value. The estimated uncertainty on the end point energy is then
+defined by $\Delta \chi^2 = 1$ and $\Delta NLL = \frac{1}{2}$. An example fit using the 1992 detector response function
+and the 1992 aluminum data is shown in figure \ref{fig:1992AlFits}. The fit end point values for all 
+datasets and both detector response functions are shown in figures \ref{fig:ChiSq} and \ref{fig:NLL}, and the $\chi^2$/DoF
+distribution is shown in figure \ref{fig:ChiSqOfFits}. The $\chi^2$/DoF peaks around 1 for the 1998 detector response 
+function and does not have the expected shape for the 1992 detector response function. Figure \ref{fig:compareFits}
+shows the difference between these fits. Figure \ref{fig:ToyFitErrs} shows the errors in fitting toy data generated with
+an end point value of 90 MeV, which shows that the expected difference between the $\chi^2$ and NLL fits is around 0.5 MeV.
+The difference between the two fits for the data is around 1 MeV for the fits using the 1998 detector response function,
+which is larger than expected but not too far off. The difference between the fits when using the 1992 detector response function
+is around 3 MeV, consistent with the 1992 detector response not describing the data well.
+The toy data fits suggests that the NLL fit end point values are closer to the true value due to a bias of around 0.5 MeV 
+in the $\chi^2$ fits.
+
+%%  where the NLL fit end point values are consistently higher which is consistent
+%% with NLL being more sensitive to bins with low entries.
+
+%% The published data was fit using both of the published response functions.
+%% The method to fit the data was to minimize the $\chi^2$ value for many values
+%% of kMax, and then fit a parabola to the $\chi^2$ distribution, 
+%% $\chi^2_{Min} + \frac{(k-kMax)^2}{\sigma^2}$. The uncertainty on the fit kMax
+%% is then the inverse square root of the coefficient. This was also done using
+%% a negative log likelihood (NLL) minimization strategy, where the variance is half of
+%% the inverse of the leading coefficient. 
+%% The latter is able to take into account empty
+%% bins in the data while the former cannot. The end point values for each target Z 
+%% are shown in figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and NLL minimization
+%% respectively, and the $\chi^2$/DoF is shown in figure \ref{fig:ChiSqOfFits}. The NLL
+%% fitting method includes empty bins, which are ignored by the $\chi^2$ fitting method,
+%% and has a greater cost for deviating from bins with small entry numbers. This results
+%% in the NLL fit end point values being consistently higher, as is shown in figure \ref{fig:compareFits}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/png/1992_resp_1992_Al_data_allPlots.png}
+  \caption{The left figures show the best fit convolved closure approximation spectrum as well
+  as the convolved spectrums using the best fit endpoint value $\pm$ 2 MeV. The right figures
+  show the parabolic fit to find the best fit endpoint value. The top figures use $\chi ^2$ 
+  minimization while the bottom figures use NLL minimization.}
+  \label{fig:1992AlFits}
+\end{figure}
+
 
 \begin{figure}[h]
   \centering
@@ -27,66 +72,123 @@ in the NLL fit end point values being consistently higher, as is shown in figure
   \subfloat[NLL Minimization Fit  \label{fig:NLL}]{%
   \includegraphics[width=0.48\linewidth]{figures/png/all_kMaxesNLL_vs_target_z.png}
   }
-  \caption{Best fit end point value vs nuclear targets using (a) $\chi^2$ minimization and (b) NLL minimization.
-    Triangular markers indicate the published values and uncertainty, circular markers indicate the results
-    using the published 1992 response function, and square markers indicate the results using the published
-    1998 response function. The 1992 response function data points are offset by -0.2 from their target z values
-    and the published data points are offset by 0.2 from their target z values.
+  \caption{Fit results vs target Z using (a) $\chi^2$ minimization and (b) NLL minimization.
+    The 1992 detector response function data points (circles) are offset by -0.2 in z and the published data points (triangles)
+    are offset by +0.2 in z.
   }
 \end{figure}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/png/chiSq_of_fits.png}
-  \caption{Fit $\chi^2$ values for both response functions and both fitting methods. }
+  \caption{Fit $\chi^2$ values for both detector response functions and both fitting methods. }
   \label{fig:ChiSqOfFits}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{figures/png/compare_fit_results.png}
+  \caption{Plot of the difference between the end point values found using $\chi^2$ and
+    NLL minimization with and without a restricted range using the 1998 detector response function.}
+  \label{fig:compareFits}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{figures/png/compare_fit_results_unrestrictedOnly.png}
+  \caption{Plot of the difference between the end point values found using $\chi^2$ and
+    NLL minimization using the 1992 and 1998 detector response functions.}
+  \label{fig:compareFits}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% These toy data plots need to be fixed! 1992 missing legend and kMax value
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[h]
+  \centering
+  \subfloat[ 1992 detector response \label{fig:1992ToyErrs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_errors_1992_response.png}
+  }
+  \hfill
+  \subfloat[ 1998 detector response  \label{fig:1998ToyErrs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_errors_1998_response.png}
+  }
+  \caption{Fit results errors for 50 toy data sets using the (a) 1992 or (b) 1998 detector response function.
+    The toy data sets are generated from a convolution with an end point value of 90 MeV and generated
+    with 1275 data points.
+  }
+  \label{fig:ToyFitErrs}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \subfloat[ 1992 detector response \label{fig:1992ToyZs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_z_values_1992_response.png}
+  }
+  \hfill
+  \subfloat[ 1998 detector response  \label{fig:1998ToyZs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_z_values_1998_response.png}
+  }
+  \caption{Fit results z values for 50 toy data sets using the (a) 1992 or (b) 1998 detector response function.
+    The toy data sets are generated from a convolution with an end point value of 90 MeV and generated
+    with 1275 data points. The z value for a fit is the fit end point value minus the true value, divided
+    by the fit estimated uncertainty. 
+  }
+  \label{fig:ToyFitZs}
 \end{figure}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \subsection { Fits of the 1992 data }
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
       Dataset & Published $k_{Max}$ & $\chi^2 / DoF$ & Our $k_{Max}$ & $\chi^2 / DoF$  & Response & Fit \\
       \hhline{|=||=|=|=|=|=|=|}
-       Al 1992   & 90.2 $\pm$ 2   & 1.1 & 88.0 $\pm$ 0.5 & 1.7 (57.2 / 34) & 1992 & $\chi^2$ \\  
-                 &                &     & 89.6 $\pm$ 0.5 & 1.0 (33.9 / 34) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 90.6 $\pm$ 0.4 & 2.3 (98.1 / 43) & 1992 & NLL \\
-                 &                &     & 90.1 $\pm$ 0.5 & 1.3 (54.3 / 43) & 1998 & NLL \\
-       \hline                                                               
-       Ca 1992   & 93   $\pm$ 2   & 1.6 & 90.9 $\pm$ 0.4 & 2.9 (113.4 / 39)& 1992 & $\chi^2$ \\  
-                 &                &     & 92.8 $\pm$ 0.4 & 1.2 (48.4 / 39) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 94.2 $\pm$ 0.3 & 4.8 (205.0 / 43)& 1992 & NLL \\
-                 &                &     & 93.4 $\pm$ 0.4 & 1.6 (68.3 / 43) & 1998 & NLL \\
-      \hline                                                                
-       Mo 1992   & 90   $\pm$ 2   & 0.8 & 87.9 $\pm$ 0.5 & 1.8 (58.0 / 32) & 1992 & $\chi^2$ \\  
-                 &                &     & 89.0 $\pm$ 0.4 & 0.7 (22.4 / 32) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 89.8 $\pm$ 0.3 & 1.8 (77.2 / 43) & 1992 & NLL \\
-                 &                &     & 89.4 $\pm$ 0.4 & 0.6 (27.1 / 43) & 1998 & NLL \\
-      \hline                                                                
-       Pb 1992   & 84   $\pm$ 3   & 0.9 & 82.1 $\pm$ 0.5 & 1.4 (43.9 / 31) & 1992 & $\chi^2$ \\  
-                 &                &     & 83.2 $\pm$ 0.5 & 0.6 (17.6 / 31) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 84.8 $\pm$ 0.4 & 1.8 (79.5 / 43) & 1992 & NLL \\
-                 &                &     & 84.3 $\pm$ 0.4 & 0.5 (22.3 / 43) & 1998 & NLL \\
-      \hline                                                                
-       Si 1992   & 92.2 $\pm$ 2   & 1.7 & 89.1 $\pm$ 0.4 & 3.5 (116.9 / 33)& 1992 & $\chi^2$ \\  
-                 &                &     & 90.6 $\pm$ 0.4 & 1.3 (43.4 / 33) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 91.6 $\pm$ 0.3 & 3.7 (160.2 / 43)& 1992 & NLL \\
-                 &                &     & 91.0 $\pm$ 0.4 & 1.3 (54.1 / 43) & 1998 & NLL \\
-      \hline                                                                
-       Sn 1992   & 87   $\pm$ 2   & 1.1 & 85.3 $\pm$ 0.5 & 2.6 (79.6 / 31) & 1992 & $\chi^2$ \\  
-                 &                &     & 86.6 $\pm$ 0.5 & 0.7 (22.1 / 31) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 87.7 $\pm$ 0.3 & 2.5 (105.8 / 43) & 1992 & NLL \\
-                 &                &     & 87.1 $\pm$ 0.4 & 0.6 (24.1 / 43) & 1998 & NLL \\
+       Al 1992   & 90   $\pm$ 2   & 1.1 & 88.5 $\pm$ 0.5 &  1.6 (56.0 / 34) & 1992 & $\chi^2$ \\  
+                 &                &     & 90.1 $\pm$ 0.5 &  1.2 (40.1 / 34) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 91.3 $\pm$ 0.4 & 2.3 ( 100.9 / 43)& 1992 & NLL \\
+                 &                &     & 90.8 $\pm$ 0.5 & 1.5 ( 63.0 / 43) & 1998 & NLL \\
+       \hline                                                                
+       Ca 1992   & 93   $\pm$ 2   & 1.6 & 91.4 $\pm$ 0.4 &  2.6 (100.2 / 39)& 1992 & $\chi^2$ \\  
+                 &                &     & 93.1 $\pm$ 0.4 &  1.4 (52.7 / 39) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 94.8 $\pm$ 0.3 & 4.6 ( 196.5 / 43)& 1992 & NLL \\
+                 &                &     & 94.1 $\pm$ 0.4 & 1.7 ( 72.5 / 43) & 1998 & NLL \\
+      \hline                                                                 
+       Mo 1992   & 90   $\pm$ 2   & 0.8 & 88.3 $\pm$ 0.5 &  1.6 (50.3 / 32) & 1992 & $\chi^2$ \\  
+                 &                &     & 89.3 $\pm$ 0.4 &  0.8 (24.7 / 32) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 90.1 $\pm$ 0.4 & 0.7 ( 29.2 / 43) & 1992 & NLL \\
+                 &                &     & 90.5 $\pm$ 0.3 & 1.6 ( 70.9 / 43) & 1998 & NLL \\
+      \hline                                                                 
+       Pb 1992   & 84   $\pm$ 3   & 0.9 & 82.5 $\pm$ 0.5 &  1.3 (41.1 / 31) & 1992 & $\chi^2$ \\  
+                 &                &     & 83.4 $\pm$ 0.5 &  0.6 (18.2 / 31) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 85.5 $\pm$ 0.4 & 2.1 ( 92.3 / 43) & 1992 & NLL \\
+                 &                &     & 84.8 $\pm$ 0.5 & 0.7 ( 28.7 / 43) & 1998 & NLL \\
+      \hline                                                                 
+       Si 1992   & 92   $\pm$ 2   & 1.7 & 89.6 $\pm$ 0.4 &  3.1 (102.9 / 33)& 1992 & $\chi^2$ \\  
+                 &                &     & 91.0 $\pm$ 0.4 &  1.3 (42.4 / 33) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 92.3 $\pm$ 0.3 & 3.4 ( 147.7 / 43)& 1992 & NLL \\
+                 &                &     & 91.7 $\pm$ 0.4 & 1.2 ( 52.6 / 43) & 1998 & NLL \\
+      \hline                                                                 
+       Sn 1992   & 87   $\pm$ 2   & 1.1 & 85.6 $\pm$ 0.5 &  2.4 (74.7 / 31) & 1992 & $\chi^2$ \\  
+                 &                &     & 86.9 $\pm$ 0.5 &  0.7 (21.7 / 31) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 88.4 $\pm$ 0.3 & 2.5 ( 109.6 / 43) & 1992 & NLL \\
+                 &                &     & 87.7 $\pm$ 0.4 & 0.6 ( 26.6 / 43) & 1998 & NLL \\
       \hline                           
     \end{tabular}
   \end{center}
@@ -97,47 +199,47 @@ in the NLL fit end point values being consistently higher, as is shown in figure
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection { Fits of the 1995 data }
 
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
       Dataset & Published $k_{Max}$ & $\chi^2 / DoF$ & Our $k_{Max}$ & $\chi^2 / DoF$  & Response & Fit \\
       \hhline{|=||=|=|=|=|=|=|}
-       Ag 1995   & 87.3 $\pm$ 1.9 & 1.0 &83.7 $\pm$ 0.7 & 2.2 (64.8 / 30)  & 1992 & $\chi^2$ \\  
-                 &                &     &84.8 $\pm$ 0.6 & 1.0 (30.3 / 30)  & 1998 & $\chi^2$ \\  
+       Ag 1995   & 89.0 $\pm$ 3.2 & 1.2 &83.9 $\pm$ 0.7 &  2.0 (60.7 / 30)  & 1992 & $\chi^2$ \\  
+                 &                &     &85.0 $\pm$ 0.7 &  1.0 (29.2 / 30)  & 1998 & $\chi^2$ \\  
+                                                                             
+                &                &     & 87.2 $\pm$ 0.4 & 2.2 ( 93.8 / 43) & 1992 & NLL \\
+                &                &     & 86.3 $\pm$ 0.5 & 0.8 ( 35.9 / 43) & 1998 & NLL \\      
+      \hline                                                                
+       Al 1995   & 90.1 $\pm$ 1.8 & 1.5 &84.7 $\pm$ 0.3 &  4.2 (134.9 / 32) & 1992 & $\chi^2$ \\  
+                 &                &     &85.3 $\pm$ 0.3 &  1.3 (41.9 / 32)  & 1998 & $\chi^2$ \\  
                                                                             
-                &                &     & 86.5 $\pm$ 0.4 & 2.1 (91.8 / 43) & 1992 & NLL \\
-                &                &     & 85.7 $\pm$ 0.5 & 0.8 (36.1 / 43) & 1998 & NLL \\      
-      \hline                                                               
-       Al 1995   & 90.1 $\pm$ 1.8 & 1.6 &84.4 $\pm$ 0.3 & 4.8 (153.2 / 32) & 1992 & $\chi^2$ \\  
-                 &                &     &85.2 $\pm$ 0.3 & 1.4 (46.4 / 32)  & 1998 & $\chi^2$ \\  
-                                                                           
-                &                &     & 86.6 $\pm$ 0.2 & 4.8 (205.2 / 43) & 1992 & NLL \\
-                &                &     & 85.9 $\pm$ 0.3 & 1.3 (56.3 / 43) & 1998 & NLL \\
-      \hline                                                               
-       O 1995    & 87.1 $\pm$ 1.9 & 1.5 &83.0 $\pm$ 0.4 & 5.0 (123.9 / 25) & 1992 & $\chi^2$ \\  
-                 &                &     &83.9 $\pm$ 0.3 & 1.4 (34.0 / 25)  & 1998 & $\chi^2$ \\  
-                                                                           
-                &                &     & 84.6 $\pm$ 0.2 & 3.5 (149.5 / 43)& 1992 & NLL\\
-                &                &     & 84.2 $\pm$ 0.3 & 1.1 (49.2 / 43) & 1998 & NLL\\
-      \hline                                                                    
-       Si 1995   & 87.8 $\pm$ 1.7 & 1.9 &84.5 $\pm$ 0.3 & 5.4 (168.3 / 31) & 1992 & $\chi^2$ \\  
-                 &                &     &85.1 $\pm$ 0.3 & 2.4 (74.7 / 31)  & 1998 & $\chi^2$ \\  
+                &                &     & 87.2 $\pm$ 0.2 & 4.7 ( 203.1 / 43) & 1992 & NLL \\
+                &                &     & 86.5 $\pm$ 0.3 & 1.3 ( 54.3 / 43) & 1998 & NLL \\
+      \hline                                                                
+       O 1995    & 88.4 $\pm$ 2.3 & 2.1 &83.3 $\pm$ 0.3 &  4.5 (113.5 / 25) & 1992 & $\chi^2$ \\  
+                 &                &     &84.1 $\pm$ 0.3 &  1.3 (33.3 / 25)  & 1998 & $\chi^2$ \\  
                                                                             
-                &                &     & 86.6 $\pm$ 0.2 & 5.3 (227.9 / 43) & 1992 & NLL \\
-                &                &     & 86.1 $\pm$ 0.3 & 2.1 (88.9 / 43) & 1998 & NLL \\
-      \hline                                                               
-       Ti 1995   & 88.1 $\pm$ 2.0 & 1.5 &84.4 $\pm$ 0.5 & 3.9 (124.1 / 32) & 1992 & $\chi^2$ \\  
-                 &                &     &85.6 $\pm$ 0.4 & 1.5 (48.7 / 32)  & 1998 & $\chi^2$ \\  
-                                                                           
-                &                &     & 87.0 $\pm$ 0.3 & 3.9 (169.0 / 43) & 1992 & NLL \\
-                &                &     & 86.3 $\pm$ 0.4 & 1.3 (56.8 / 43) & 1998 & NLL \\
-      \hline                                                               
-       Zr 1995   & 87.1 $\pm$ 2.0 & 1.3 &84.3 $\pm$ 0.6 & 3.1 (94.9 / 31)  & 1992 & $\chi^2$ \\  
-                 &                &     &84.9 $\pm$ 0.6 & 1.6 (51.1 / 31)  & 1998 & $\chi^2$ \\  
-                                                                           
-                &                &     & 86.6 $\pm$ 0.4 & 2.8 (119.4 / 43) & 1992 & NLL \\
-                &                &     & 85.9 $\pm$ 0.5 & 1.4 (59.3 / 43) & 1998 & NLL \\
+                &                &     & 85.3 $\pm$ 0.2 & 3.6 ( 153.5 / 43)& 1992 & NLL\\
+                &                &     & 84.7 $\pm$ 0.3 & 1.1 ( 48.3 / 43) & 1998 & NLL\\
+      \hline                                                                     
+       Si 1995   & 89.4 $\pm$ 1.8 & 2.7 &84.7 $\pm$ 0.3 &  4.9 (151.5 / 31) & 1992 & $\chi^2$ \\  
+                 &                &     &85.2 $\pm$ 0.3 &  2.3 (71.9 / 31)  & 1998 & $\chi^2$ \\  
+                                                                             
+                &                &     & 87.3 $\pm$ 0.2 & 5.6 ( 241.5 / 43) & 1992 & NLL \\
+                &                &     & 86.7 $\pm$ 0.3 & 2.4 ( 102.9 / 43)& 1998 & NLL \\
+      \hline                                                                
+       Ti 1995   & 89.2 $\pm$ 2.0 & 1.9 &84.8 $\pm$ 0.5 &  3.6 (116.0 / 32) & 1992 & $\chi^2$ \\  
+                 &                &     &85.8 $\pm$ 0.4 &  1.5 (46.9 / 32)  & 1998 & $\chi^2$ \\  
+                                                                            
+                &                &     & 87.7 $\pm$ 0.3 & 3.9 ( 169.7 / 43) & 1992 & NLL \\
+                &                &     & 86.9 $\pm$ 0.4 & 1.3 ( 57.4 / 43) & 1998 & NLL \\
+      \hline                                                                
+       Zr 1995   & 89.2 $\pm$ 3.4 & 1.2 &84.3 $\pm$ 0.6 &  2.9 (89.7 / 31)  & 1992 & $\chi^2$ \\  
+                 &                &     &85.0 $\pm$ 0.6 &  1.6 (49.6 / 31)  & 1998 & $\chi^2$ \\  
+                                                                            
+                &                &     & 87.3 $\pm$ 0.4 & 2.9 ( 122.6 / 43) & 1992 & NLL \\
+                &                &     & 86.4 $\pm$ 0.5 & 1.4 ( 59.4 / 43) & 1998 & NLL \\
       \hline
                                                                                 
     \end{tabular}
@@ -146,31 +248,32 @@ in the NLL fit end point values being consistently higher, as is shown in figure
   \label{table:fits1995}
 \end{table}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection { Fits of the 1998 data }
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
       Dataset & Published $k_{Max}$ & $\chi^2 / DoF$ & Our $k_{Max}$ & $\chi^2 / DoF$  & Response & Fit \\
       \hhline{|=||=|=|=|=|=|=|}
-       Ni58 1998 & 92   $\pm$ 2   & 1.8 & 87.2 $\pm$ 0.6 & 2.5 (80.6 / 32) & 1992 & $\chi^2$ \\  
-                 &                &     & 88.0 $\pm$ 0.5 & 1.1 (35.6 / 32) & 1998 & $\chi^2$ \\  
-                                                                            
-                &                 &     & 89.7 $\pm$ 0.4 & 2.5 (106.8 / 43) & 1992 & NLL \\
-                &                 &     & 88.9 $\pm$ 0.5 & 1.0 (41.2 / 43) & 1998 & NLL \\
-      \hline                                                                
-       Ni60 1998 & 92   $\pm$ 2   & 2.0 & 85.2 $\pm$ 0.4 & 2.7 (90.3 / 33) & 1992 & $\chi^2$ \\  
-                 &                &     & 86.5 $\pm$ 0.4 & 1.1 (37.0 / 33) & 1998 & $\chi^2$ \\  
-                                                                            
-                &                 &     & 88.1 $\pm$ 0.3 & 3.3 (143.5 / 43) & 1992 & NLL \\
-                &                 &     & 87.3 $\pm$ 0.4 & 1.0 (41.5 / 43) & 1998 & NLL \\
-      \hline                                                                
-       Ni62 1998 & 90   $\pm$ 2   & 1.3 & 84.3 $\pm$ 0.6 & 1.8 (52.6 / 30) & 1992 & $\chi^2$ \\  
-                 &                &     & 85.6 $\pm$ 0.6 & 0.8 (24.1 / 30) & 1998 & $\chi^2$ \\  
-                                                                            
-                &                 &     & 87.1 $\pm$ 0.4 & 1.9 (79.9 / 43) & 1992 & NLL \\
-                &                 &     & 86.3 $\pm$ 0.5 & 0.6 (25.8 / 43) & 1998 & NLL \\
+       Ni58 1998 & 92   $\pm$ 2   & 1.8 & 87.3 $\pm$ 0.6 &  2.3 (73.7 / 32) & 1992 & $\chi^2$ \\  
+                 &                &     & 88.3 $\pm$ 0.6 &  1.0 (32.7 / 32) & 1998 & $\chi^2$ \\  
+                                                                             
+                &                 &     & 90.4 $\pm$ 0.4 & 2.5 ( 107.2 / 43) & 1992 & NLL \\
+                &                 &     & 89.6 $\pm$ 0.5 & 0.9 ( 40.0 / 43) & 1998 & NLL \\
+      \hline                                                                 
+       Ni60 1998 & 92   $\pm$ 2   & 2.0 & 85.5 $\pm$ 0.5 &  2.6 (84.4 / 33) & 1992 & $\chi^2$ \\  
+                 &                &     & 86.8 $\pm$ 0.5 &  1.1 (36.4 / 33) & 1998 & $\chi^2$ \\  
+                                                                             
+                &                 &     & 88.7 $\pm$ 0.3 & 3.5 ( 151.1 / 43) & 1992 & NLL \\
+                &                 &     & 87.9 $\pm$ 0.4 & 1.1 ( 47.5 / 43) & 1998 & NLL \\
+      \hline                                                                 
+       Ni62 1998 & 90   $\pm$ 2   & 1.3 & 84.6 $\pm$ 0.6 &  1.7 (51.1 / 30) & 1992 & $\chi^2$ \\  
+                 &                &     & 85.9 $\pm$ 0.6 &  0.8 (25.1 / 30) & 1998 & $\chi^2$ \\  
+                                                                             
+                &                 &     & 87.7 $\pm$ 0.4 & 2.1 ( 89.2 / 43) & 1992 & NLL \\
+                &                 &     & 87.0 $\pm$ 0.5 & 0.7 ( 30.9 / 43) & 1998 & NLL \\
       \hline                           
     \end{tabular}
   \end{center}
@@ -181,23 +284,23 @@ in the NLL fit end point values being consistently higher, as is shown in figure
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection { Fits of the 1999 data }
 
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
       Dataset & Published $k_{Max}$ & $\chi^2 / DoF$ & Our $k_{Max}$ & $\chi^2 / DoF$  & Response & Fit \\
       \hhline{|=||=|=|=|=|=|=|}
-       O 1999    & 88.4 $\pm$ 2.3 & 2.1 & 84.5 $\pm$ 0.4 & 6.4 (178.3 / 28)& 1992 & $\chi^2$ \\  
-                 &                &     & 85.7 $\pm$ 0.4 & 2.0 (55.8 / 28) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 86.5 $\pm$ 0.2 & 4.9 (212.8 / 43)& 1992 & NLL\\
-                 &                &     & 86.0 $\pm$ 0.3 & 2.1 (89.4 / 43) & 1998 & NLL\\
-      \hline                                                                
-       Ti 1999   & 89.2 $\pm$ 2.0 & 1.9 & 85.8 $\pm$ 0.5 & 4.1 (135.6 / 33)& 1992 & $\chi^2$ \\  
-                 &                &     & 87.2 $\pm$ 0.4 & 1.6 (52.3 / 33) & 1998 & $\chi^2$ \\  
-                                                                            
-                 &                &     & 88.5 $\pm$ 0.3 & 4.2 (178.6 / 43) & 1992 & NLL \\
-                 &                &     & 87.8 $\pm$ 0.4 & 1.2 (50.9 / 43) & 1998 & NLL \\
+       O 1999    & 88.4 $\pm$ 2.3 & 2.1 & 84.8 $\pm$ 0.4 &  5.6 (157.1 / 28)& 1992 & $\chi^2$ \\  
+                 &                &     & 86.0 $\pm$ 0.4 &  1.7 (46.7 / 28) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 87.2 $\pm$ 0.2 & 5.0 ( 213.4 / 43)& 1992 & NLL\\
+                 &                &     & 86.6 $\pm$ 0.3 & 2.2 ( 93.9 / 43) & 1998 & NLL\\
+      \hline                                                                 
+       Ti 1999   & 89.2 $\pm$ 2.0 & 1.9 & 86.3 $\pm$ 0.5 &  3.7 (123.0 / 33)& 1992 & $\chi^2$ \\  
+                 &                &     & 87.5 $\pm$ 0.4 &  1.4 (47.7 / 33) & 1998 & $\chi^2$ \\  
+                                                                             
+                 &                &     & 89.3 $\pm$ 0.3 & 4.2 ( 179.0 / 43) & 1992 & NLL \\
+                 &                &     & 88.5 $\pm$ 0.4 & 1.2 ( 52.1 / 43) & 1998 & NLL \\
       \hline                           
     \end{tabular}
   \end{center}
@@ -205,58 +308,5 @@ in the NLL fit end point values being consistently higher, as is shown in figure
   \label{table:fits1999}
 \end{table}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{figures/png/compare_fit_results.png}
-  \caption{Plot of the difference between the end point values found using $\chi^2$ and
-    NLL minimization with and without a restricted range using the 1998 response function.}
-  \label{fig:compareFits}
-\end{figure}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{figures/png/compare_fit_results_unrestrictedOnly.png}
-  \caption{Plot of the difference between the end point values found using $\chi^2$ and
-    NLL minimization using the 1998 response function.}
-  \label{fig:compareFits}
-\end{figure}
-
-
-%% Restricted Range Results (cut top 0.5% and below 60 MeV):
-%% Year, Response, Target, kMax, kErr, chi: 1991 1992 Ca Chi 92.66 0.52 chi 3.6 NLL 94.99 0.32 chi 4.3 
-%% Year, Response, Target, kMax, kErr, chi: 1992 1992 Al Chi 88.68 0.50 chi 1.6 NLL 90.30 0.37 chi 2.1 
-%% Year, Response, Target, kMax, kErr, chi: 1992 1992 Si Chi 89.99 0.43 chi 2.9 NLL 91.62 0.28 chi 3.3 
-%% Year, Response, Target, kMax, kErr, chi: 1992 1992 Ca Chi 91.66 0.40 chi 2.8 NLL 94.00 0.28 chi 4.2
-%% Year, Response, Target, kMax, kErr, chi: 1992 1992 Mo Chi 88.67 0.47 chi 1.6 NLL 89.63 0.32 chi 1.7
-%% Year, Response, Target, kMax, kErr, chi: 1992 1992 Sn Chi 86.70 0.54 chi 2.1 NLL 88.08 0.34 chi 2.2
-%% Year, Response, Target, kMax, kErr, chi: 1992 1992 Pb Chi 83.17 0.53 chi 1.3 NLL 85.07 0.38 chi 1.8
-%% Year, Response, Target, kMax, kErr, chi: 1995 1992 Al Chi 85.93 0.34 chi 2.3 NLL 87.03 0.23 chi 2.7
-%% Year, Response, Target, kMax, kErr, chi: 1995 1992 Si Chi 85.58 0.29 chi 4.0 NLL 86.83 0.23 chi 4.5
-%% Year, Response, Target, kMax, kErr, chi: 1995 1992 Ti Chi 85.89 0.48 chi 3.3 NLL 87.29 0.31 chi 3.6
-%% Year, Response, Target, kMax, kErr, chi: 1995 1992 O Chi 84.31 0.37 chi 3.3 NLL 85.14 0.25 chi 3.4
-%% Year, Response, Target, kMax, kErr, chi: 1995 1992 Ag Chi 85.53 0.67 chi 1.3 NLL 87.23 0.48 chi 1.5
-%% Year, Response, Target, kMax, kErr, chi: 1995 1992 Zr Chi 86.04 0.59 chi 1.9 NLL 87.22 0.43 chi 2.0
-%% Year, Response, Target, kMax, kErr, chi: 1998 1992 Ni58 Chi 88.46 0.58 chi 1.7 NLL 89.96 0.40 chi 2.0
-%% Year, Response, Target, kMax, kErr, chi: 1998 1992 Ni60 Chi 86.31 0.45 chi 2.5 NLL 88.19 0.34 chi 3.2
-%% Year, Response, Target, kMax, kErr, chi: 1998 1992 Ni62 Chi 85.41 0.64 chi 1.5 NLL 87.32 0.43 chi 1.7
-%% Year, Response, Target, kMax, kErr, chi: 1999 1992 Ti Chi 87.18 0.48 chi 3.6 NLL 88.73 0.31 chi 3.8
-%% Year, Response, Target, kMax, kErr, chi: 1999 1992 O Chi 86.15 0.38 chi 3.8 NLL 87.08 0.24 chi 3.7
-%% Year, Response, Target, kMax, kErr, chi: 1991 1998 Ca Chi 93.53 0.49 chi 1.5 NLL 94.18 0.46 chi 1.5
-%% Year, Response, Target, kMax, kErr, chi: 1992 1998 Al Chi 89.46 0.54 chi 0.8 NLL 89.78 0.51 chi 1.3
-%% Year, Response, Target, kMax, kErr, chi: 1992 1998 Si Chi 90.78 0.44 chi 1.3 NLL 91.46 0.43 chi 1.4
-%% Year, Response, Target, kMax, kErr, chi: 1992 1998 Ca Chi 93.03 0.42 chi 1.4 NLL 93.50 0.41 chi 1.7
-%% Year, Response, Target, kMax, kErr, chi: 1992 1998 Mo Chi 89.06 0.49 chi 0.8 NLL 89.56 0.48 chi 0.8
-%% Year, Response, Target, kMax, kErr, chi: 1992 1998 Sn Chi 87.38 0.58 chi 0.7 NLL 87.71 0.53 chi 0.7
-%% Year, Response, Target, kMax, kErr, chi: 1992 1998 Pb Chi 83.37 0.54 chi 0.6 NLL 84.07 0.50 chi 0.6
-%% Year, Response, Target, kMax, kErr, chi: 1995 1998 Al Chi 85.87 0.33 chi 1.1 NLL 86.64 0.34 chi 0.6
-%% Year, Response, Target, kMax, kErr, chi: 1995 1998 Si Chi 85.89 0.35 chi 2.8 NLL 86.90 0.35 chi 3.0
-%% Year, Response, Target, kMax, kErr, chi: 1995 1998 Ti Chi 86.11 0.48 chi 1.6 NLL 86.51 0.42 chi 1.6
-%% Year, Response, Target, kMax, kErr, chi: 1995 1998 O Chi 84.51 0.40 chi 1.5 NLL 85.12 0.38 chi 1.1
-%% Year, Response, Target, kMax, kErr, chi: 1995 1998 Ag Chi 85.91 0.71 chi 0.7 NLL 86.58 0.66 chi 0.8
-%% Year, Response, Target, kMax, kErr, chi: 1995 1998 Zr Chi 85.89 0.65 chi 1.4 NLL 86.53 0.58 chi 1.5
-%% Year, Response, Target, kMax, kErr, chi: 1998 1998 Ni58 Chi 88.63 0.61 chi 1.1 NLL 89.77 0.62 chi 1.3
-%% Year, Response, Target, kMax, kErr, chi: 1998 1998 Ni60 Chi 86.93 0.51 chi 1.3 NLL 87.52 0.46 chi 1.3
-%% Year, Response, Target, kMax, kErr, chi: 1998 1998 Ni62 Chi 85.89 0.64 chi 0.8 NLL 86.71 0.63 chi 0.8
-%% Year, Response, Target, kMax, kErr, chi: 1999 1998 Ti Chi 87.69 0.48 chi 1.6 NLL 88.08 0.42 chi 1.4
-%% Year, Response, Target, kMax, kErr, chi: 1999 1998 O Chi 86.71 0.41 chi 1.5 NLL 87.10 0.37 chi 1.3
 
