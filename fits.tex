@@ -4,19 +4,64 @@
 %%% End:
 
 \section { Fits }
-The published data was fit using both of the published response functions.
-The method to fit the data was to minimize the $\chi^2$ value for many values
-of kMax, and then fit a parabola to the $\chi^2$ distribution, 
-$\chi^2_{Min} + \frac{(k-kMax)^2}{\sigma^2}$. The uncertainty on the fit kMax
-is then the inverse square root of the coefficient. This was also done using
-a negative log likelihood (NLL) minimization strategy, where the variance is half of
-the inverse of the leading coefficient. The latter is able to take into account empty
-bins in the data while the former cannot. The end point values for each target z 
-are shown in figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and NLL minimization
-respectively, and the $\chi^2$/DoF is shown in figure \ref{fig:ChiSqOfFits}. The NLL
-fitting method includes empty bins, which are ignored by the $\chi^2$ fitting method,
-and has a greater cost for deviating from bins with small entry numbers. This results
-in the NLL fit end point values being consistently higher, as is shown in figure \ref{fig:compareFits}.
+
+To fit the end point value, convolved spectrums were generated for end point energies
+between 80 MeV and 100 MeV using both detector response functions. The spectrums were scaled to minimize the $\chi^2$
+or the negative log likelihood (NLL), where the latter is able to take into account empty
+bins in the data while the former cannot. For the NLL, the convolved spectrum value was taken as the mean of
+a Poisson distribution. The scale factors to minimize the $\chi^2$ and NLL fits were derived by:
+
+$$f_{NLL}(N;x_i) = \frac{x_i^N e^{-x_i}}{N!}$$
+$$\chi^2 = \sum^N_{i=1} (\frac{A*x_i - y_i}{\sigma_i})^2; NLL = -\sum^N_{i=1}log(f_{NLL}(y_i;A*x_i))$$
+$$\frac{\partial NLL}{\partial A} = 0 \rightarrow A_{NLL} = \frac{\sum^N_{i=1} y_i}{\sum^N_{i=1} x_i} $$
+$$\frac{\partial \chi^2}{\partial A} = 0 \rightarrow A_{\chi^2} = \frac{\sum^N_{i=1} \frac{x_i*y_i}{\sigma_i^2}}{\sum^N_{i=1} \frac{x_i^2}{\sigma_i^2}} $$
+
+\noindent
+where $x_i$ is the predicted value corresponding to data $y_i$ for a given end point value.
+
+The distribution of $\chi^2$ and NLL values as a function of the end point energy were each fit to a parabola near 
+the minimum using ROOT to find the best fit end point value. The estimated uncertainty on the end point energy is then
+defined by $\Delta \chi^2 = 1$ and $\Delta NLL = \frac{1}{2}$. An example fit using the 1992 detector response function
+and the 1992 aluminum data is shown in figure \ref{fig:1992AlFits}. The fit end point values for all 
+datasets and both detector response functions are shown in figures \ref{fig:ChiSq} and \ref{fig:NLL}, and the $\chi^2$/DoF
+distribution is shown in figure \ref{fig:ChiSqOfFits}. The $\chi^2$/DoF peaks around 1 for the 1998 detector response 
+function and does not have the expected shape for the 1992 detector response function. Figure \ref{fig:compareFits}
+shows the difference between these fits. Figure \ref{fig:ToyFitErrs} shows the errors in fitting toy data generated with
+an end point value of 90 MeV, which shows that the expected difference between the $\chi^2$ and NLL fits is around 0.5 MeV.
+The difference between the two fits for the data is around 1 MeV for the fits using the 1998 detector response function,
+which is larger than expected but not too far off. The difference between the fits when using the 1992 detector response function
+is around 3 MeV, consistent with the 1992 detector response not describing the data well.
+The toy data fits suggests that the NLL fit end point values are closer to the true value due to a bias of around 0.5 MeV 
+in the $\chi^2$ fits.
+
+%%  where the NLL fit end point values are consistently higher which is consistent
+%% with NLL being more sensitive to bins with low entries.
+
+%% The published data was fit using both of the published response functions.
+%% The method to fit the data was to minimize the $\chi^2$ value for many values
+%% of kMax, and then fit a parabola to the $\chi^2$ distribution, 
+%% $\chi^2_{Min} + \frac{(k-kMax)^2}{\sigma^2}$. The uncertainty on the fit kMax
+%% is then the inverse square root of the coefficient. This was also done using
+%% a negative log likelihood (NLL) minimization strategy, where the variance is half of
+%% the inverse of the leading coefficient. 
+%% The latter is able to take into account empty
+%% bins in the data while the former cannot. The end point values for each target Z 
+%% are shown in figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and NLL minimization
+%% respectively, and the $\chi^2$/DoF is shown in figure \ref{fig:ChiSqOfFits}. The NLL
+%% fitting method includes empty bins, which are ignored by the $\chi^2$ fitting method,
+%% and has a greater cost for deviating from bins with small entry numbers. This results
+%% in the NLL fit end point values being consistently higher, as is shown in figure \ref{fig:compareFits}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/png/1992_resp_1992_Al_data_allPlots.png}
+  \caption{The left figures show the best fit convolved closure approximation spectrum as well
+  as the convolved spectrums using the best fit endpoint value $\pm$ 2 MeV. The right figures
+  show the parabolic fit to find the best fit endpoint value. The top figures use $\chi ^2$ 
+  minimization while the bottom figures use NLL minimization.}
+  \label{fig:1992AlFits}
+\end{figure}
+
 
 \begin{figure}[h]
   \centering
@@ -27,23 +72,80 @@ in the NLL fit end point values being consistently higher, as is shown in figure
   \subfloat[NLL Minimization Fit  \label{fig:NLL}]{%
   \includegraphics[width=0.48\linewidth]{figures/png/all_kMaxesNLL_vs_target_z.png}
   }
-  \caption{Best fit end point value vs nuclear targets using (a) $\chi^2$ minimization and (b) NLL minimization.
-    Triangular markers indicate the published values and uncertainty, circular markers indicate the results
-    using the published 1992 response function, and square markers indicate the results using the published
-    1998 response function. The 1992 response function data points are offset by -0.2 from their target z values
-    and the published data points are offset by 0.2 from their target z values.
+  \caption{Fit results vs target Z using (a) $\chi^2$ minimization and (b) NLL minimization.
+    The 1992 detector response function data points (circles) are offset by -0.2 in z and the published data points (triangles)
+    are offset by +0.2 in z.
   }
 \end{figure}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/png/chiSq_of_fits.png}
-  \caption{Fit $\chi^2$ values for both response functions and both fitting methods. }
+  \caption{Fit $\chi^2$ values for both detector response functions and both fitting methods. }
   \label{fig:ChiSqOfFits}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{figures/png/compare_fit_results.png}
+  \caption{Plot of the difference between the end point values found using $\chi^2$ and
+    NLL minimization with and without a restricted range using the 1998 detector response function.}
+  \label{fig:compareFits}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{figures/png/compare_fit_results_unrestrictedOnly.png}
+  \caption{Plot of the difference between the end point values found using $\chi^2$ and
+    NLL minimization using the 1992 and 1998 detector response functions.}
+  \label{fig:compareFits}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% These toy data plots need to be fixed! 1992 missing legend and kMax value
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[h]
+  \centering
+  \subfloat[ 1992 detector response \label{fig:1992ToyErrs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_errors_1992_response.png}
+  }
+  \hfill
+  \subfloat[ 1998 detector response  \label{fig:1998ToyErrs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_errors_1998_response.png}
+  }
+  \caption{Fit results errors for 50 toy data sets using the (a) 1992 or (b) 1998 detector response function.
+    The toy data sets are generated from a convolution with an end point value of 90 MeV and generated
+    with 1275 data points.
+  }
+  \label{fig:ToyFitErrs}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \subfloat[ 1992 detector response \label{fig:1992ToyZs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_z_values_1992_response.png}
+  }
+  \hfill
+  \subfloat[ 1998 detector response  \label{fig:1998ToyZs}]{%
+  \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_z_values_1998_response.png}
+  }
+  \caption{Fit results z values for 50 toy data sets using the (a) 1992 or (b) 1998 detector response function.
+    The toy data sets are generated from a convolution with an end point value of 90 MeV and generated
+    with 1275 data points. The z value for a fit is the fit end point value minus the true value, divided
+    by the fit estimated uncertainty. 
+  }
+  \label{fig:ToyFitZs}
 \end{figure}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
  %% Ca 1991 & & & 91.8 $\pm$ 0.5 &  3.7 (149.8 / 40) & 1992 & $\chi^2$ \\             
  %% Ca 1991 & & & 93.6 $\pm$ 0.5 &  1.4 (56.4 / 40) & 1998 & $\chi^2$ \\             
@@ -158,7 +260,7 @@ in the NLL fit end point values being consistently higher, as is shown in figure
 
 
 \subsection { Fits of the 1992 data }
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
@@ -209,7 +311,7 @@ in the NLL fit end point values being consistently higher, as is shown in figure
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection { Fits of the 1995 data }
 
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
@@ -261,7 +363,7 @@ in the NLL fit end point values being consistently higher, as is shown in figure
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection { Fits of the 1998 data }
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
@@ -294,7 +396,7 @@ in the NLL fit end point values being consistently higher, as is shown in figure
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection { Fits of the 1999 data }
 
-\begin{table}[H]
+\begin{table}[h]
   \begin{center}
     \begin{tabular}{|l||l|l|l|l|l|l|}
       \hline
@@ -317,21 +419,3 @@ in the NLL fit end point values being consistently higher, as is shown in figure
   \caption{The fit results.}
   \label{table:fits1999}
 \end{table}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{figures/png/compare_fit_results.png}
-  \caption{Plot of the difference between the end point values found using $\chi^2$ and
-    NLL minimization with and without a restricted range using the 1998 response function.}
-  \label{fig:compareFits}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{figures/png/compare_fit_results_unrestrictedOnly.png}
-  \caption{Plot of the difference between the end point values found using $\chi^2$ and
-    NLL minimization using the 1998 response function.}
-  \label{fig:compareFits}
-\end{figure}
-
-
