@@ -64,12 +64,12 @@
 
     This note summarizes our effort to understand published results on kMax fits
     of the RMC spectra. 
-
-    We conclude that Mistakes and other internal inconsistencies found in the literature make
+%
+    We conclude that internal inconsistencies found in the literature make
     it difficult to rely on the results of other experiments when predicting RMC
-    background to the search of mu- -->e+ conversion process.
+    background to the search of \MuMinusEPlus\ conversion process.
     
-    To reliably predict RMC background to mu- --> e+, Mu2e needs to have its own
+    To reliably predict RMC background to  \MuMinusEPlus, Mu2e needs to have its own
     measurement of the endpoint of the RMC photon spectrum on Al.
     
   \end{abstract}
@@ -99,23 +99,24 @@
 
 Radiative muon capture (RMC) is one of the most important backgrounds to the search for
 \MuMinusEPlus\ conversion on nuclei. In case of the Mu2e target of choice, aluminum,
-RMC is also the most uncertain one: the expected $e^+$ signal energy, E = 92.32 MeV,
+RMC is also the most uncertain one: the expected signal $e^+$ energy, E = 92.32 MeV,
 is close enough to the endpoint of the RMC spectrum on aluminum,
 $90 \pm 2$ MeV \cite{RMC_1999_PhysRevC.59.2853}, so variations of the endpoint
 energy within the experimental errors could result in significant changes
 in the RMC background expectations.
 %
-We note that the uncertainty in the RMC background expectations is mostly due to the
-published experimental uncertainty of 2 MeV - the Mu2e energy resolution of about 300-400 keV
+%% We note that the uncertainty in the RMC background expectations is mostly due to the
+%% published experimental uncertainty of 2 MeV - 
+The Mu2e energy resolution of about 300-400 keV
 is small compared to a $\sim$ 3 MeV difference between the expected signal energy
 and the maximal energy of a positron coming from a conversion of a RMC photon.
 However, given the published 2 MeV uncertainty on the RMC spectrum endpoint the two 
 numbers are just about 1.5 standard deviation apart, so understanding of the
 experimental uncertainty on \kmax\ becomes quite important.
 
-Fortunately, measurements on the photon spectra on nuclei published 
+Fortunately, measurements of the photon spectra on nuclei published 
 by the TRIUMF RMC spectrometer group in \cite{RMC_1992_PhysRevC.46.1094},
-\cite{RMC_1999_PhysRevC.59.2853} - provide sufficient information for readers
+\cite{RMC_1999_PhysRevC.59.2853} provide sufficient information for readers
 to reproduce the published photon spectrum endpoints, and in this note
 we report on our attempt to do so.
 
@@ -126,9 +127,9 @@ the photon spectrum endpoint energy \kmax:
 $$
    {dN \over dx} = {e^2 \over \pi} {\kmax^2 \over {m_\mu^2}}  (1-x) (1-2x+2x^2) x (1-x)^2
 $$
-, where $x = k/\kmax$.
+where $x = k/\kmax$.
 
-We use parameterizations of the TRIUMF RMC spectrometer response
+We use published parameterizations of the TRIUMF RMC spectrometer response
 to convolute them with the closure approximation spectra, fit the experimental data,
 determine the best \kmax\ values and the corresponding fit uncertainties
 for different nuclei, and compare the fit results to the published values.
