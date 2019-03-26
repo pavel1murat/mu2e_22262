@@ -1,25 +1,33 @@
 \section { Parameterization of the Detector Response}
 
+As published RMC spectra have the detector response convoluted in, to compare
+them to the model predictions one needs to know the detector response.
 
-Published are the measured data. To compare them to the model predictions,
-one needs to know how the theoretical spectrum is modified by the detector
-response, i.e. know the detector response.
+Fortunately, the TRIUMF group which has published the most recent highest statistics
+RMC spectra, has also made published its detector response -
+see \cite{RMC_1992_PhysRevC.46.1094} and \cite{RMC_1998_PhysRevC.58.1767}. 
 
-The detector response D(E,E') describes the probability of detect a photon
- of true energy E with a reconstructed energy E'.
+The detector response D(E,E') is defined as the probability for a photon
+with energy E to be reconstructed in the detector with energy E'. As follows from the
+definition, D(E,E') includes both resolution and acceptance - the integral of D(E,E')dE'
+gives the total acceptance for a given energy E.
 
-In the following the two detector responses published respectively in 
- \cite{RMC_1992_PhysRevC.46.1094} and \cite{RMC_1998_PhysRevC.58.1767}
- are in detail described.
- Both are determined using the GEANT Monte Carlo simulation using monoenergetic photons
- in a energy range of 50-140 MeV and fitted to a analytic parametrization.
+In both \cite{RMC_1992_PhysRevC.46.1094} and \cite{RMC_1998_PhysRevC.58.1767}, the
+detector response is determined using the GEANT3-based simulation using monoenergetic
+photons in a energy range of 50-140 MeV, and parameterized analytically.
+The parameterizations of  \cite{RMC_1992_PhysRevC.46.1094} and \cite{RMC_1998_PhysRevC.58.1767}
+are significantly different, the source of the difference is not understood.
 
-\subsection { 1992 Detector response parametrization}
-The parametrization represents a Gaussian distribution with exponential low- and
- high-energy tails. In order to reproduce the low-energy tail for high-energy photons a second Gaussian is added
- to the fuction for photon energy E>60 MeV.
-The fuction form is:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection { 1992 Detector response parametrization (\cite{RMC_1992_PhysRevC.46.1094})}
+
+The response of the TRIUMF RMC spectrometer published in \cite{RMC_1992_PhysRevC.46.1094}
+is described as a Gaussian function with the exponential low- and  high-energy tails.
+In order to reproduce the low-energy resolution tail for high-energy photons, a second Gaussian
+is added for the photon energy E>60 MeV. The functional form is as follows:
+
 \begin{equation}
+  \label{eq:001}
 \text{D(E,E')}= \left\{
 \begin{array}{ll}
                 \text{A exp}\left[-\frac{1}{2\sigma_0^2}(E'-E_o)\right]+
@@ -39,11 +47,14 @@ where $E_1=E_0 - \frac{\sigma_0^2}{\sigma_1}$, $E_2 =E_0 + \frac{\sigma_0^2}{\si
  $B=\text{A exp}\left[-\frac{\sigma_0^2}{2\sigma_1^2}\right]$, 
  $C=\text{A exp}\left[\frac{\sigma_0^2}{2\sigma_2^2}\right]$. 
 
-The other parameters have a polynomial dependence to the photon energy like:
+ The parameters $A, B ,C , F, \sigma_i$  etc are polynomials in the photon energy:
+ 
 \begin{equation}
-f(E)= P_0+P_1E+P_2E^2+P_3E^3
-\end{equation} 
-the coefficients are reported in table~\ref{tab:coefficients1} and ~\ref{tab:coefficients2} .
+  f(E)= P_0+P_1E+P_2E^2+P_3E^3
+\end{equation}
+
+The coefficients are reported in tables ~\ref{tab:coefficients1} and ~\ref{tab:coefficients2} .
+
 \begin{table}[!h]
 \begin{center}
 \begin{tabular}{| c | c | c | c | c | }
@@ -59,7 +70,9 @@ E$_0$ (E<60) & 22.73 & 0.1995 & 5.993$\times 10^{-3}$ \\ \hline
 
 \end{tabular}
 \end{center}
-\caption{Coeffiecients of the polynomial energy dependece of the response fuction parameters\label{tab:coefficients1}}
+\caption{
+  Polynomial parameterization of the coefficiencts in \ref{eq:001}
+  \label{tab:coefficients1}}
 \end{table}
 
 \begin{table}[!h]
@@ -71,7 +84,7 @@ A & 3.259$\times 10^{-4}$ & -4.120$\times 10^{-4}$ & 1.015$\times 10^{-5}$ & -4.
 F/A & -0.1337 & 2.828$\times 10^{-3}$ & -9.701$\times 10^{-6}$ & \\ \hline
 \end{tabular}
 \end{center}
-\caption{Coeffiecients of the polynomial energy dependece of the photon acceptance parameters\label{tab:coefficients2}}
+\caption{Polynomial parameterization of coefficients in \label{tab:coefficients2}}
 \end{table}
 
 In Fig.~\ref{fig:parameterDependance} the photon energy dependence of the parameters of the detector response function are plotted.
@@ -81,10 +94,12 @@ In Fig.~\ref{fig:parameterDependance} the photon energy dependence of the parame
  \includegraphics[width=0.33\columnwidth]{png/A_FoverA92.png} 
  \includegraphics[width=0.33\columnwidth]{png/E092.png} 
  \end{center}
- \caption{Energy dependence of the different parameter defining the detector response}
+ \caption{
+   Energy dependence of parameters defining the TRIUMF RMC spectrometer response
+   \cite{RMC_1992_PhysRevC.46.1094}
+ }
  \label{fig:parameterDependance}
  \end{figure}
-
 
 Some examples of the detector response at different energies, namely 50 MeV , 70 MeV , 90 MeV, and 110 MeV,
  are reported in Fig.~\ref{fig:92ResponseExample}.\\
@@ -93,15 +108,17 @@ As previously described, for photon energies E>60 MeV, the low-energy tails are 
 \begin{figure}[!h]
 \centering
 \includegraphics[width =\textwidth]{png/Resp_example92.png}
-\caption{1992 detector response parametrization for different photon energies}
+\caption{'1992 detector response parametrization for different photon energies}
 \label{fig:92ResponseExample}
 \end{figure}
 
 
 \subsection { 1998 Detector Response }
 
-Because of differences in the triggers used in this later work, the detector response results slightly different.
-The fuction used describes the detector response through a Gaussian peak with logaritmic low-energy  and an exponetial high-energy tail:
+The TRIUMF RMC spectrometer response published in 1998 (\cite{RMC_1998_PhysRevC.58.1767}) is
+significantly different from its '1992 version.
+It s parameterized as a gaussian with logaritmic low-energy and an exponential
+high-energy tails:
 
 \begin{equation}
   D(E,E')= \left\{
@@ -113,7 +130,7 @@ The fuction used describes the detector response through a Gaussian peak with lo
   \right\}
 \end{equation}
 
-The quantity $\beta$  allows the matching of the low-side and core of the distribution at E'=$E_0-\sigma_0$.
+The parameter $\beta$  allows the matching of the low-side and core of the distribution at E'=$E_0-\sigma_0$.
 
 The quantity $x$ is defined as: 
 $$x= \frac{\alpha- E}{\alpha -37 \text{ MeV}}$$.
