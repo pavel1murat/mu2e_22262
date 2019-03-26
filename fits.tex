@@ -5,7 +5,7 @@
 
 \section { Fits }
 
-To fit the endpoint energy for a given data spectrum, closure approximation spectrums were convolved with either detector
+To fit the endpoint energy for a given data spectrum, closure approximation spectrums were convolved with a detector
 response function using endpoint energies between 80 MeV and 100 MeV.
 %% convolved spectrums were generated for endpoint energies between 80 MeV and 100 MeV using both detector response functions.
 Each convolved spectrum was scaled to minimize the $\chi^2$ and then the negative log likelihood ($\mathcal{L}$).
@@ -23,20 +23,30 @@ a Poisson distribution.
 %% where $x_i$ is the predicted value corresponding to data $y_i$ for a given endpoint value.
 
 The distribution of $\chi^2$ and $\mathcal{L}$ values as a function of the endpoint energy were each fit to a parabola near 
-the minimum using ROOT to find the best fit endpoint energy. The estimated uncertainty on the endpoint energy is then
-defined by $\Delta \chi^2 = 1$ and $\Delta \mathcal{L} = \frac{1}{2}$. An example fit using the 1992 detector response function
-and the 1992 aluminum data is shown in figure \ref{fig:1992AlFits}. The fit endpoint energies for all 
+their minimums to find the best fit endpoint energy. The estimated uncertainty on the endpoint energy is then
+defined by $\Delta \chi^2 = 1$ and $\Delta \mathcal{L} = \frac{1}{2}$. This was done using both published detector response
+functions, an example fit using the 1992 detector response function
+and the 1992 aluminum data is shown in figure \ref{fig:1992AlFits}. 
+
+The fit endpoint energies for all 
 datasets and both detector response functions are shown in figures \ref{fig:ChiSq} and \ref{fig:NLL}, and the $\chi^2$/DoF
-distribution is shown in figure \ref{fig:ChiSqOfFits}. The $\chi^2$/DoF peaks around 1 for the 1998 detector response 
+distributions are shown in figure \ref{fig:ChiSqOfFits}. 
+%% Should we include the Chi^2 for the NLL fit? Should we define what this means?
+%% See Fitter::DoBinnedLikelihoodFit(bool extended) where defines the chi^2 using the data
+%% and likelihood function. So straightforward chi^2 with errors from spectrum?
+The $\chi^2$/DoF peaks around 1 for the 1998 detector response 
 function and does not have the expected shape for the 1992 detector response function. Figure \ref{fig:compareFits}
-shows the difference between these fits. Figure \ref{fig:ToyFitErrs} shows the errors in fitting toy data generated with
+shows the difference between the $\mathcal{L}$ and the $\chi^2$ fits for both detector response functions.
+Figure \ref{fig:ToyFitErrs} shows the errors in fitting toy data generated with
 an endpoint energy of 90 MeV. The toy fits shows that the expected difference between the $\chi^2$ and $\mathcal{L}$ fits 
 is around 0.5 MeV. The difference between the two fits for the data is around 1 MeV for the fits using the 1998 detector 
 response function and around 3 MeV when using the 1992 detector response function, consistent with the 1992 detector response 
-not describing the data well. A possible source of the discrepancy between the $\chi^2$ and $\mathcal{L}$ fits is a small background 
+not describing the data well. 
+
+A possible source of the discrepancy between the $\chi^2$ and $\mathcal{L}$ fits is a small background 
 in the high energy region of the data, which would skew the $\mathcal{L}$ fit endpoint energies up due to the high weight they would hold for deviating
 from the convolved spectrums. In the data spectrum shown in figure \ref{fig:1992AlFits} there appears to be 3 high energy events above 95 MeV
-not consistent with the expected spectrum. One could account for this by removing the top 0.5\% of the data and refitting the remaining
+not consistent with the expected spectrum. One could account for a background like this by removing the top 0.5\% of the data and refitting the remaining
 data. Figure \ref{fig:compareFitsTopCut} shows the difference between the fits after this cut on the data, where the 
 mean difference is now around 2 MeV for the 1992 detector response function, which is still inconsistent with expectations from
 the toy MC studies, and around 0.5 MeV for the 1998 detector response function, which is consistent with the toy MC studies.
@@ -115,7 +125,7 @@ in the $\chi^2$ fits.
   \subfloat[ 1998 detector response  \label{fig:1998ToyErrs}]{%
   \includegraphics[width=0.48\linewidth]{figures/png/toy_kMax_errors_1998_response.png}
   }
-  \caption{Fit results errors for 50 toy data sets using the (a) 1992 or (b) 1998 detector response function.
+  \caption{Fit errors for 50 toy data sets using the (a) 1992 or (b) 1998 detector response function.
     The toy data sets are generated from a convolution with an endpoint energy of 90 MeV and generated
     with 1275 data points.
   }
