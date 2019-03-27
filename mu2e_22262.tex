@@ -141,54 +141,65 @@ for different nuclei, and compare the fit results to the published values.
 \input{fits}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section { Discussion }
+There are several interesting results that have come out of this study, as well as several
+questions raised. We find that our fits result in significantly
+smaller errors on $\kmax$ than the published ones. It seems very likely that the TRIUMF 
+RMC spectrometer collaboration used the wrong definition of the fit errors. The plot on 
+page 45 of reference \cite{BERGBISH_MS_THESIS}, shown in figure \ref{fig:BergbuschChiSq}, 
+indicates that the fit error has been defined as the change in the parameter value
+corresponding to the change in the fit $\chi^2$/DOF by one, rather than the change
+by one in the total fit $\chi^2$. The number of bins in the fit histograms
+is about 35-40, which agrees with our fit errors being 5-6 times smaller than
+the published ones.
 
-\begin{enumerate}
-\item
-  Our fits result in significantly smaller errors on kMax. It seems very likely
-  that the TRIUMF RMC spectrometer collaboration used wrong definition of the
-  fit errors. Plot on page 45 from reference \cite{BERGBISH_MS_THESIS} indicates
-  that the fit error has been defined as the change in the parameter value,
-  corresponding the the change in the fit $\chi^2/DOF$ by 1, rather than to the change
-  by one in the total fit $\chi^2$. The number of bins in the fit histograms
-  is about 35-40 is consistent with our fit errors being 5-6 times smaller than
-  the published ones.
-\item
-  '1998 parameterization of the detector response gives significantly better
-  fits of all spectra published by the TRIUMF RMC spectrometer 
-  ('1992, '1995, '1998, and '1999)
-\item
-  chi2's of the fits with '1992 response are large enough to suggest wrong
-  parameterization. Our chi2's per degree of freedom are consistent with
-  the published ones
-\item
-  However, the '1992 response is consistent with the positon and the width of the 
-  RPC peak published in 1992, while '1998 response - is not. 
-  This confirms internal consistency of the '1992 publication 
-\item
-  different kMax fits for the same target vary on a scale large compared
-  to the fit errors
-% \item
-%   how our fit results are different from the published? 
-\end{enumerate}
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/png/Bergbusch_O16_chisq_plot.png}
+    \caption{Figure shown on page 45 from reference \cite{BERGBISH_MS_THESIS} showing
+    how the fit error is defined for the fit of the $^{16}$O RMC data. }
+    \label{fig:BergbuschChiSq}
+  \end{figure}
+
+The 1998 parameterization of the detector response gives significantly better
+fits of all spectra published by the TRIUMF RMC spectrometer (1992 \cite{RMC_1992_PhysRevC.46.1094},
+1995 \cite{BERGBISH_MS_THESIS}, 1998 \cite{RMC_1998_PhysRevC.58.1767}, and 
+1999 \cite{RMC_1999_PhysRevC.59.2853}).
+The $\chi^2$ of the fits with 1992 parameterization of the detector response are large enough
+to suggest the wrong parameterization. Our $\chi^2$ per degree of freedoms are consistent with
+the published ones using the 1998 detector response.
+
+However, the 1992 detector response is consistent with the positon and the width of the 
+RPC peak published in 1992, while 1998 response is not. 
+This confirms internal inconsistency of the 1992 publication.
+
+Lastly, fit $\kmax$ values for the same target in different years vary on a scale large compared
+to the fit errors. This shows inconsistency between the different publication years despite
+no change in the detector reported in the published works.
 
 % \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{ Summary }
 
-The only thing we can claim for certain is that the fit uncertainties on kMax are
+The only can claim we can confidently make is that the fit uncertainties on $\kmax$ are
 of the order of 0.5 MeV, not 2 MeV. Published uncertainties of about 2-3 MeV
-have been derived using wrong procedure (fit of the distribution of chi2/dof
-instead of the total chi2)
+have been derived using the wrong procedure (fit of the distribution of $\chi^2$/DOF
+instead of the total $\chi^2$). To fully understand the RMC background at Mu2e,
+Mu2e will need to measure $\kmax$ for the stopping target material used.
 
 
-For Al, the fit results are consistent with the published - about 90 MeV.
+For the planned stopping target material, aluminum, the fit results for $\kmax$ are consistent with 
+the published results - about 90 MeV. For background studies at Mu2e, the current plan is to use
+the published endpoint value for aluminum from TRIUMF, 90 MeV, with an estimated error of 
+$\pm 0.5$ MeV. For background estimates, an analysis should be performed using
+$\kmax = 90$ MeV and $\kmax + 3\sigma = 91.5$ MeV.
 
 
-Plan : use aluminum data
+%% Plan : use aluminum data
 
-a)Assume $90 \pm 0.5$ MeV, determine the RMC background
+%% a)Assume $90 \pm 0.5$ MeV, determine the RMC background
 
-b) assume kMax + 3 sigma, determine the RMC background
+%% b) assume kMax + 3 sigma, determine the RMC background
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{ Acknowledgements }
@@ -201,6 +212,10 @@ We want to thank ...
      %
 \bibliographystyle{plain}
 \bibliography{radiative_muon_capture}
+
+\appendix
+
+\input{fit_results}
 
 % \printbibliography
 \end{document}

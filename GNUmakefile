@@ -19,11 +19,11 @@ pdf: $(pdfs)
 png: $(pngs) 
 # 	echo $?
 
-mu2e_22262: mu2e_22262.tex input_data.tex fits.tex detector_response.tex
+mu2e_22262: mu2e_22262.tex input_data.tex fits.tex detector_response.tex fit_results.tex
 	if [ ! -f tmp ] ; then mkdir tmp ; fi ; \
-	pdflatex -output-directory=tmp mu2e_22262.tex input_data.tex fits.tex detector_response.tex; \
+	pdflatex -output-directory=tmp mu2e_22262.tex input_data.tex fits.tex detector_response.tex fit_results.tex; \
 	bibtex tmp/mu2e_22262 ; \
-	pdflatex -output-directory=tmp mu2e_22262.tex input_data.tex fits.tex detector_response.tex
+	pdflatex -output-directory=tmp mu2e_22262.tex input_data.tex fits.tex detector_response.tex fit_results.tex
 
 all: pdf mu2e_22262
 	echo $(pdfs)
