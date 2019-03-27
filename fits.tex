@@ -6,8 +6,8 @@
 \section { Fits }
 
 To fit the endpoint energy for a given data spectrum, closure approximation spectra were convolved with a detector
-response function using endpoint energies between 80 MeV and 100 MeV.
-%% convolved spectra were generated for endpoint energies between 80 MeV and 100 MeV using both detector response functions.
+response function using $\kmax$ values between 80 MeV and 100 MeV.
+%% convolved spectra were generated for $\kmax$ values between 80 MeV and 100 MeV using both detector response functions.
 Each convolved spectrum was scaled to minimize the $\chi^2$ and then the negative log likelihood ($\mathcal{L}$).
 %%, where the latter is able to take into account empty bins in the data while the former cannot. 
 For the $\mathcal{L}$ minimization, the convolved spectrum value in each bin was taken as the mean 
@@ -28,7 +28,7 @@ defined by $\Delta \chi^2 = 1$ and $\Delta \mathcal{L} = \frac{1}{2}$. This was 
 functions, an example fit using the 1992 detector response function
 and the 1992 aluminum data is shown in figure \ref{fig:1992AlFits}. 
 
-The fit endpoint energies for all 
+The fit $\kmax$ values for all 
 datasets and both detector response functions are shown in figures \ref{fig:ChiSq} and \ref{fig:NLL}, and the $\chi^2$/DOF
 distributions are shown in figure \ref{fig:ChiSqOfFits}. 
 %% Should we include the Chi^2 for the NLL fit? Should we define what this means?
@@ -44,16 +44,16 @@ response function and around 3 MeV when using the 1992 detector response functio
 not describing the data well. 
 
 A possible source of the discrepancy between the $\chi^2$ and $\mathcal{L}$ fits is a small background 
-in the high energy region of the data, which would skew the $\mathcal{L}$ fit endpoint energies up due to the high weight they would hold for deviating
+in the high energy region of the data, which would skew the $\mathcal{L}$ fit $\kmax$ values up due to the high weight they would hold for deviating
 from the convolved spectra. In the data spectrum shown in figure \ref{fig:1992AlFits} there appears to be 3 high energy events above 95 MeV
 not consistent with the expected spectrum. One could account for a background like this by removing the top 0.5\% of the data and refitting the remaining
 data. Figure \ref{fig:compareFitsTopCut} shows the difference between the fits after this cut on the data, where the 
 mean difference is now around 2 MeV for the 1992 detector response function, which is still inconsistent with expectations from
 the toy MC studies, and around 0.5 MeV for the 1998 detector response function, which is consistent with the toy MC studies.
-The toy MC studies suggest that the $\mathcal{L}$ fit endpoint energies are closer to the true energy due to a bias of around 0.5 MeV 
-in the $\chi^2$ fits.
+%% The toy MC studies suggest that the $\mathcal{L}$ fit $\kmax$ values are closer to the true energy due to a bias of around 0.5 MeV 
+%% in the $\chi^2$ fits.
 
-%%  where the $\mathcal{L}$ fit endpoint energies are consistently higher which is consistent
+%%  where the $\mathcal{L}$ fit $\kmax$ values are consistently higher which is consistent
 %% with $\mathcal{L}$ being more sensitive to bins with low entries.
 
 %% The published data was fit using both of the published response functions.
@@ -64,12 +64,12 @@ in the $\chi^2$ fits.
 %% a negative log likelihood ($\mathcal{L}$) minimization strategy, where the variance is half of
 %% the inverse of the leading coefficient. 
 %% The latter is able to take into account empty
-%% bins in the data while the former cannot. The endpoint energies for each target Z 
+%% bins in the data while the former cannot. The $\kmax$ values for each target Z 
 %% are shown in figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and $\mathcal{L}$ minimization
 %% respectively, and the $\chi^2$/DOF is shown in figure \ref{fig:ChiSqOfFits}. The $\mathcal{L}$
 %% fitting method includes empty bins, which are ignored by the $\chi^2$ fitting method,
 %% and has a greater cost for deviating from bins with small entry numbers. This results
-%% in the $\mathcal{L}$ fit endpoint energies being consistently higher, as is shown in figure \ref{fig:compareFits}.
+%% in the $\mathcal{L}$ fit $\kmax$ values being consistently higher, as is shown in figure \ref{fig:compareFits}.
 
 \begin{figure}[h]
   \centering
@@ -110,8 +110,8 @@ in the $\chi^2$ fits.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{figures/png/compare_fit_results_92_v_98_unrestrictedOnly.png}
-  \caption{The difference between the endpoint energies found using $\chi^2$ and
+  \includegraphics[width=0.8\linewidth]{figures/png/compare_fit_results_92_v_98_unrestrictedOnly.png}
+  \caption{The difference between the $\kmax$ values found using $\chi^2$ and
     $\mathcal{L}$ minimization using the 1992 and 1998 detector response functions.}
   \label{fig:compareFits}
 \end{figure}
@@ -134,8 +134,8 @@ in the $\chi^2$ fits.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{figures/png/compare_fit_results_92_v_98_with_topCut.png}
-  \caption{The difference between the endpoint energies found using $\chi^2$ and
+  \includegraphics[width=0.7\linewidth]{figures/png/compare_fit_results_92_v_98_with_topCut.png}
+  \caption{The difference between the $\kmax$ values found using $\chi^2$ and
     $\mathcal{L}$ minimization with and without excluding the top 0.5\% of the data
     using the 1992 and 1998 detector response functions.}
   \label{fig:compareFitsTopCut}
