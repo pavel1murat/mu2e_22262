@@ -30,7 +30,7 @@ is added for the photon energy E>60 MeV. The functional form is as follows:
   \label{eq:001}
 \text{D(E,E')}= \left\{
 \begin{array}{ll}
-                \text{A exp}\left[-\frac{1}{2\sigma_0^2}(E'-E_o)\right]+
+                \text{A exp}\left[-\frac{1}{2\sigma_0^2}(E'-E_o)^2\right]+
                 \text{F exp}\left[-\frac{1}{2\sigma_3^2}(E'-E_3)^2\right]
  \quad E_1<E'<E_2 \\
                 \text{B exp}\left[-\frac{1}{\sigma_1}(E_1-E') \right]+
@@ -126,7 +126,7 @@ high-energy tails:
 \begin{equation}
   D(E,E')= \left\{
     \begin{array}{ll}
-      \gamma \cdot ln(x)/x    \qquad E' \leq (E_0-\sigma_0) \\
+      \beta \cdot ln(x)/x    \qquad E' \leq (E_0-\sigma_0) \\
       Ae^{-(E'-E_0)^2/2\sigma_0^2} \qquad E0-\sigma_0<E'<(E_0-\sigma_0^2/\sigma^2) \\
       Ae^{-(E'-E_0)/2\sigma_2}    \qquad E' \geq (E_0+\sigma_0^2/\sigma_2)
     \end{array}
@@ -137,14 +137,13 @@ The parameter $\beta$  allows to match the low-side and the gaussian core
 of the distribution at E'=$E_0-\sigma_0$.
 $x$ is defined as
 $$
-  x= \frac{\alpha- E}{\alpha -37 \text{ MeV}}
-$$.
-
+  x= \frac{\alpha- E'}{\alpha -37} 
+$$, E in MeV.
 Dependence of the coefficients $\alpha, A, E_0, \sigma_0, \sigma_2$ on the photon energy
 is parameterized with the 3-rd order polinomials:
 
 \begin{equation}
-  \alpha= a+0+a_1y+a_2y^2+a_3y^3
+  \alpha= a_0+a_1y+a_2y^2+a_3y^3
 \end{equation}
 
 where $y= (E-60)/60$, E in MeV.
@@ -182,10 +181,10 @@ in the detector response function parameterization.
 Figure~\ref{fig:response98} shows the '1998 detector response for four different photon energies.
 
 The distributions in Figure~\ref{fig:response98} are significantly wider than similar distributions
-shown in Figure~\ref{fig:response92}. Given that there were no big reported changes in the TRIUMF
+shown in Figure~\ref{fig:92ResponseExample}. Given that there were no big reported changes in the TRIUMF
 RMC spectrometer configuration, one can conclude that understanding of the detector response has
-significantly evolved in between 1992 and 1998. However, there is no discussion of the change 
-in the published papers. 
+significantly evolved in between 1992 and 1998. However, there is no corresponding discussion 
+in the '1998 paper. 
 
 \begin{figure}[!h]
 \centering
