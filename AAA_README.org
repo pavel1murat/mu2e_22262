@@ -3,7 +3,7 @@
 
 * bibliography configuration: <TAB> to expand 
 
-  git clone ssh://mu2egpvm02.fnal.gov:/grid/fermiapp/mu2e/git/mu2e_bibliography.git
+  git clone https://github.com/pavel1murat/mu2e_bibliography.git
   export BIBINPUTS=${BIBINPUTS}:$PWD/mu2e_bibliography
 
 * Abstract: <TAB> to expand 
