@@ -1,9 +1,9 @@
 \section { Parameterization of the Detector Response}
 
-As published RMC spectra have the detector response convoluted in, to compare
+As published RMC spectra have the detector response convolved in, to compare
 them to the model predictions one needs to know the detector response.
 
-Fortunately, the TRIUMF group, which has published the most recent highest statistics
+Fortunately, the TRIUMF group, which has published the most recent and highest statistics
 RMC spectra, has also made published its detector response -
 see \cite{RMC_1992_PhysRevC.46.1094} and \cite{RMC_1998_PhysRevC.58.1767}. 
 
@@ -22,9 +22,9 @@ are significantly different, the source of the difference is not understood.
 \subsection { 1992 Detector response parametrization }
 
 The response of the TRIUMF RMC spectrometer published in \cite{RMC_1992_PhysRevC.46.1094}
-is described as a Gaussian function with the exponential low- and  high-energy tails.
+is described as a Gaussian function with exponential low- and  high-energy tails.
 In order to reproduce the low-energy resolution tail for high-energy photons, a second Gaussian
-is added for the photon energy E>60 MeV. The functional form is as follows:
+is added for photon energies above 60 MeV. The functional form is as follows:
 
 \begin{equation}
   \label{eq:001}
@@ -47,13 +47,13 @@ where $E_1=E_0 - \frac{\sigma_0^2}{\sigma_1}$, $E_2 =E_0 + \frac{\sigma_0^2}{\si
  $B=\text{A exp}\left[-\frac{\sigma_0^2}{2\sigma_1^2}\right]$, 
  $C=\text{A exp}\left[\frac{\sigma_0^2}{2\sigma_2^2}\right]$. 
 
- The parameters $A, B ,C , F, \sigma_i$  etc are fitted as polynomials in the photon energy:
+ The parameters $A, B ,C , F, \sigma_i$, etc. are fitted as polynomials in the photon energy:
  
 \begin{equation}
   f(E)= P_0+P_1E+P_2E^2+P_3E^3
 \end{equation}
 
-The coefficients are reported in tables ~\ref{tab:coefficients1} and ~\ref{tab:coefficients2} .
+The coefficients are reported in Tables ~\ref{tab:coefficients1} and ~\ref{tab:coefficients2} .
 
 \begin{table}[!h]
 \begin{center}
@@ -88,7 +88,7 @@ F/A & -0.1337 & 2.828$\times 10^{-3}$ & -9.701$\times 10^{-6}$ & \\ \hline
 \end{table}
 
 The energy dependence of several coefficients used to parameterize the response
-function is shown in Fig.~\ref{fig:parameterDependence}.
+function is shown in Figure~\ref{fig:parameterDependence}.
 
 \begin{figure}[!h]
   \begin{center}
@@ -104,9 +104,9 @@ function is shown in Fig.~\ref{fig:parameterDependence}.
 \end{figure}
 
 Examples of the detector response at different energies, namely, \mbox{50 MeV},
-70 MeV , 90 MeV, and 110 MeV, are shown in Fig.~\ref{fig:92ResponseExample}.
+70 MeV , 90 MeV, and 110 MeV, are shown in Figure~\ref{fig:92ResponseExample}.
 
-As previously described, for photon energies E>60 MeV, the low-energy tails are well evident.
+As previously described, for photon energies above 60 MeV, the low-energy tails are well evident.
 
 \begin{figure}[!h]
 \centering
@@ -120,25 +120,25 @@ As previously described, for photon energies E>60 MeV, the low-energy tails are 
 
 The TRIUMF RMC spectrometer response published in 1998 (\cite{RMC_1998_PhysRevC.58.1767})
 is significantly different from its 1992 version.
-The 1998 parameterization is a gaussian with logaritmic low-energy and an exponential
+The 1998 parameterization is a Gaussian with logaritmic low-energy and exponential
 high-energy tails:
 
 \begin{equation}
   D(E,E')= \left\{
     \begin{array}{ll}
       \beta \cdot ln(x)/x    \qquad E' \leq (E_0-\sigma_0) \\
-      Ae^{-(E'-E_0)^2/2\sigma_0^2} \qquad E0-\sigma_0<E'<(E_0-\sigma_0^2/\sigma^2) \\
+      Ae^{-(E'-E_0)^2/2\sigma_0^2} \qquad E_0-\sigma_0<E'<(E_0-\sigma_0^2/\sigma^2) \\
       Ae^{-(E'-E_0)/2\sigma_2}    \qquad E' \geq (E_0+\sigma_0^2/\sigma_2)
     \end{array}
   \right\}
 \end{equation}
 
-The parameter $\beta$  allows to match the low-side and the gaussian core
+The parameter $\beta$  allows matching of the low-side and the Gaussian core
 of the distribution at E'=$E_0-\sigma_0$.
 $x$ is defined as
 $$
   x= \frac{\alpha- E'}{\alpha -37} 
-$$, E in MeV.
+$$, with E' in MeV.
 Dependence of the coefficients $\alpha, A, E_0, \sigma_0, \sigma_2$ on the photon energy
 is parameterized with the 3-rd order polinomials:
 
@@ -146,10 +146,10 @@ is parameterized with the 3-rd order polinomials:
   \alpha= a_0+a_1y+a_2y^2+a_3y^3
 \end{equation}
 
-where $y= (E-60)/60$, E in MeV.
+where $y= (E-60)/60$, with E in MeV.
 
 Polinomial coefficients which parameterize the energy dependence of
-$\alpha, A, E_0, \sigma_0, \sigma_2$ are presented in Tab.~\ref{tab:param98}
+$\alpha, A, E_0, \sigma_0, \sigma_2$ are presented in Table~\ref{tab:param98}
 
 \begin{table}[!h] \label{tab:param98}
   \begin{center}
@@ -178,7 +178,7 @@ in the detector response function parameterization.
   \label{fig:parameters98}
 \end{figure}
 
-Figure~\ref{fig:response98} shows the 1998 detector response for the same four phonon energies reported in ~\ref{fig:response92}.
+Figure~\ref{fig:response98} shows the 1998 detector response for the same four photon energies as shown in Figure~\ref{fig:92ResponseExample}.
 
 The distributions in Figure~\ref{fig:response98} are significantly wider than similar distributions
 shown in Figure~\ref{fig:92ResponseExample}. Given that there were no big reported changes in the TRIUMF
@@ -194,7 +194,7 @@ in the 1998 paper.
 \end{figure}
 
 Figure~\ref{fig:shapecomp} compares the 1992 and 1998 versions of the
-TRIUMF RMC spectrometer response at $E_{\gamma}=90$ MeV (left) and 
+TRIUMF RMC spectrometer response at E = 90 MeV (left) and 
 the linearity of the detector response for 1992 and 1998 version
 as a function of the photon energy (right).
 
@@ -215,7 +215,7 @@ response describe the radiative pion capture (RPC) peak on hydrogen at E = 129.4
 from $\pi^{-}p \rightarrow \gamma n$ on LH$_{2}$ reaction reported in the 1992 paper.
 Figure ~\ref{p004} demonstrates that the modeled 1992 detector response is consistent
 with the 1992 data, and the difference between the two parameterizations can't be
-interpreted in terms of an improved , from 1992 to 1998, understanding of the detector
+interpreted in terms of an improved, from 1992 to 1998, understanding of the detector
 response.\\
 
   \begin{figure}[!h]
@@ -230,7 +230,7 @@ response.\\
  The 1998 article also validates the detector response, showing the MC description of the
  photon spectrum from RPC on $^{12}$Ca  - see Figure~\ref{fig:art9}. However, this distribution
  is wide so the 1998 data-to-MC comparison is less sensitive to the modeled detector resolution
- than the '1992 comparison.
+ than the 1992 comparison.
 
 \begin{figure}[!h]
  \begin{center}

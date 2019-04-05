@@ -26,11 +26,11 @@ The distribution of $\chi^2$ and $\mathcal{L}$ values as a function of the endpo
 their minima to find the best fit endpoint energy. The estimated uncertainty on the endpoint energy is then
 defined by $\Delta \chi^2 = 1$ and $\Delta \mathcal{L} = \frac{1}{2}$. This was done using both published detector response
 functions, an example fit using the 1992 detector response function
-and the 1992 aluminum data is shown in figure \ref{fig:1992AlFits}. 
+and the 1992 aluminum data is shown in Figure \ref{fig:1992AlFits}. 
 
 The fit $\kmax$ values for all 
-datasets and both detector response functions are shown in figures \ref{fig:ChiSq} and \ref{fig:NLL}, and the $\chi^2$/DOF
-distributions are shown in figure \ref{fig:ChiSqOfFits}. 
+datasets and both detector response functions are shown in Figures \ref{fig:ChiSq} and \ref{fig:NLL}, and the $\chi^2$/DOF
+distributions are shown in Figure \ref{fig:ChiSqOfFits}. 
 %% Should we include the Chi^2 for the NLL fit? Should we define what this means?
 %% See Fitter::DoBinnedLikelihoodFit(bool extended) where defines the chi^2 using the data
 %% and likelihood function. So straightforward chi^2 with errors from spectrum?
@@ -45,7 +45,7 @@ not describing the data well.
 
 A possible source of the discrepancy between the $\chi^2$ and $\mathcal{L}$ fits is a small background 
 in the high energy region of the data, which would skew the $\mathcal{L}$ fit $\kmax$ values up due to the high weight they would hold for deviating
-from the convolved spectra. In the data spectrum shown in figure \ref{fig:1992AlFits} there appears to be 3 high energy events above 95 MeV
+from the convolved spectra. In the data spectrum shown in Figure \ref{fig:1992AlFits} there appears to be 3 high energy events above 95 MeV
 not consistent with the expected spectrum. One could account for a background like this by removing the top 0.5\% of the data and refitting the remaining
 data. Figure \ref{fig:compareFitsTopCut} shows the difference between the fits after this cut on the data, where the 
 mean difference is now around 2 MeV for the 1992 detector response function, which is still inconsistent with expectations from
@@ -65,11 +65,11 @@ in the $\chi^2$ fits.
 %% the inverse of the leading coefficient. 
 %% The latter is able to take into account empty
 %% bins in the data while the former cannot. The $\kmax$ values for each target Z 
-%% are shown in figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and $\mathcal{L}$ minimization
-%% respectively, and the $\chi^2$/DOF is shown in figure \ref{fig:ChiSqOfFits}. The $\mathcal{L}$
+%% are shown in Figure \ref{fig:ChiSq} and \ref{fig:NLL} using $\chi^2$ and $\mathcal{L}$ minimization
+%% respectively, and the $\chi^2$/DOF is shown in Figure \ref{fig:ChiSqOfFits}. The $\mathcal{L}$
 %% fitting method includes empty bins, which are ignored by the $\chi^2$ fitting method,
 %% and has a greater cost for deviating from bins with small entry numbers. This results
-%% in the $\mathcal{L}$ fit $\kmax$ values being consistently higher, as is shown in figure \ref{fig:compareFits}.
+%% in the $\mathcal{L}$ fit $\kmax$ values being consistently higher, as is shown in Figure \ref{fig:compareFits}.
 
 \begin{figure}[h]
   \centering

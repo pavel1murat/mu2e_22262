@@ -41,7 +41,7 @@
 \begin{titlepage}
   \begin{flushright}
     \bf {MU2E/PHYSICS/22262} \\
-    version 0.0
+    version 1.0
     \today
   \end{flushright}
 
@@ -68,14 +68,14 @@
 %
     We conclude that internal inconsistencies found in the literature make
     it difficult to rely on the results of other experiments when predicting
-    RMC background to the search of \MuMinusEPlus\ conversion process.
+    the RMC background to the search for the \MuMinusEPlus\ conversion process.
 
     However, we establish that uncertainties on the RMC endpoint
     published by the TRIUMF RMC spectrometer group are overestimated
     by a factor of about 4-5, with the real uncertainty of the measurements
     being in the range of 0.4-0.5 MeV, rather than 1.5-2 MeV.
 
-    Using $\chi^2$ fit results in biased estimates of the RMC photon
+    Using a $\chi^2$ fit results in biased estimates of the RMC photon
     spectrum endpoints, so the likelihood fit should be used.
     
     To reliably predict RMC background to  \MuMinusEPlus, Mu2e needs to have
@@ -110,7 +110,7 @@ Radiative muon capture (RMC) is one of the most important backgrounds to the sea
 \MuMinusEPlus\ conversion on nuclei. In case of the Mu2e target of choice, aluminum,
 RMC is also the most uncertain one: the expected signal $e^+$ energy, E = 92.32 MeV,
 is close enough to the endpoint of the RMC spectrum on aluminum,
-$90 \pm 2$ MeV \cite{RMC_1999_PhysRevC.59.2853}, so variations of the endpoint
+$90.1 \pm 1.8$ MeV \cite{RMC_1999_PhysRevC.59.2853}, so variations of the endpoint
 energy within the experimental errors could result in significant changes
 in the RMC background expectations.
 %
@@ -119,8 +119,8 @@ in the RMC background expectations.
 The Mu2e energy resolution of about 300-400 keV
 is small compared to a $\sim$ 3 MeV difference between the expected signal energy
 and the maximal energy of a positron coming from a conversion of a RMC photon.
-However, given the published 2 MeV uncertainty on the RMC spectrum endpoint the two 
-numbers are just about 1.5 standard deviation apart, so understanding of the
+However, given the published 1.8 MeV uncertainty on the RMC spectrum endpoint the two 
+numbers are just about 1.5 standard deviations apart, so understanding of the
 experimental uncertainty on \kmax\ becomes quite important.
 
 Fortunately, measurements of the photon spectra on nuclei published 
@@ -134,12 +134,12 @@ approximation model \cite{RMC_1979_CERN_REF-TH-2967}.
 In this model, the photon spectrum is fully defined by a single parameter,
 the photon spectrum endpoint energy \kmax:
 $$
-   {dN \over dx} = {e^2 \over \pi} {\kmax^2 \over {m_\mu^2}}  (1-x) (1-2x+2x^2) x (1-x)^2
+   {dN \over dx} = {e^2 \over \pi} {\kmax^2 \over {m_\mu^2}} (1-2x+2x^2) x (1-x)^2
 $$
 where $x = k/\kmax$.
 
 We use published parameterizations of the TRIUMF RMC spectrometer response
-to convolute them with the closure approximation spectra, fit the experimental data,
+to convolve them with the closure approximation spectra, fit the experimental data,
 determine the best \kmax\ values and the corresponding fit uncertainties
 for different nuclei, and compare the fit results to the published values.
 
@@ -154,7 +154,7 @@ There are several interesting results that have come out of this study, as well 
 questions raised. We find that our fits result in significantly
 smaller errors on $\kmax$ than the published ones. It seems very likely that the TRIUMF 
 RMC spectrometer collaboration used the wrong definition of the fit errors. The plot on 
-page 45 of reference \cite{RMC_1995_Bergbusch_MS_thesis}, shown in figure \ref{fig:BergbuschChiSq}, 
+page 45 of reference \cite{RMC_1995_Bergbusch_MS_thesis}, shown in Figure \ref{fig:BergbuschChiSq}, 
 indicates that the fit error has been defined as the change in the parameter value
 corresponding to the change in the fit $\chi^2$/DOF by one, rather than the change
 by one in the total fit $\chi^2$. The number of bins in the fit histograms
@@ -198,7 +198,7 @@ Mu2e will need to measure $\kmax$ for the stopping target material used.
 
 
 For the planned stopping target material, aluminum, the fit results for $\kmax$ are consistent with 
-the published results - around 90 MeV. For background studies at Mu2e, the suggest plan is to use
+the published results - around 90 MeV. For background studies at Mu2e, the suggested plan is to use
 the published endpoint value for aluminum from TRIUMF, 90 MeV, with an estimated error of 
 $\pm 0.5$ MeV. For background estimates, an analysis should be performed using
 $\kmax = 90$ MeV and $\kmax + 3\sigma = 91.5$ MeV.
